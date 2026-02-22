@@ -191,6 +191,12 @@ const TemplateSelectionModal = ({
 
             const template = templates.find((t) => t.id === selectedTemplate);
 
+            onSubmit({
+                title: projectName || `New ${template?.name} Project`,
+                template: templateMap[selectedTemplate] || "REACT",
+                description: template?.description,
+            });
+
             onClose();
             // Reset state for next time
             setStep("select");
@@ -444,7 +450,7 @@ const TemplateSelectionModal = ({
                                     Cancel
                                 </Button>
                                 <Button
-                                    className="bg-[#E93F3F] hover:bg-[#d03636] hover:cursor-pointer"
+                                    className="bg-[#E93F3F] hover:bg-[#d03636] hover:cursor-pointer text-white"
                                     disabled={!selectedTemplate}
                                     onClick={handleContinue}
                                 >
@@ -519,7 +525,7 @@ const TemplateSelectionModal = ({
                                 Back
                             </Button>
                             <Button
-                                className="bg-[#E93F3F] hover:bg-[#d03636] hover:cursor-pointer"
+                                className="bg-[#E93F3F] hover:bg-[#d03636] hover:cursor-pointer text-white"
                                 onClick={handleCreateProject}
                             >
                                 Create Project
