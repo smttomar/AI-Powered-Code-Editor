@@ -19,3 +19,12 @@ export interface Project {
     user: User;
     Starmark: { isMarked: boolean }[];
 }
+
+// import { Prisma } from "@/generated/prisma";
+
+// export type Project = Prisma.ProjectGetPayload<{
+//     include: {
+//         user: true;
+//         Starmark: true;
+//     };
+// }>;
