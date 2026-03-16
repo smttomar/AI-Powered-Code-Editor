@@ -53,6 +53,7 @@ import {
     Eye,
 } from "lucide-react";
 import { toast } from "sonner";
+import { MarkedToggleButton } from "./marked-toggle";
 
 interface ProjectTableProps {
     projects: Project[];
@@ -95,7 +96,7 @@ export default function ProjectTable({
             title: project.title,
             description: project.description || "",
         });
-        setDeleteDialogOpen(true);
+        setEditDialogOpen(true);
     };
 
     const handleDeleteClick = async (project: Project) => {
@@ -121,20 +122,20 @@ export default function ProjectTable({
         }
     };
 
-    // const handleMarkasFavorite = async (project: Project) => {
-    //     if (!onMarkasFavorite) return;
+    const handleMarkasFavorite = async (project: Project) => {
+        if (!onMarkasFavorite) return;
 
-    //     setIsLoading(true);
-    //     try {
-    //         await onMarkasFavorite(project.id);
-    //         toast.success("Project marked as favorite successfully");
-    //     } catch (error) {
-    //         toast.error("Failed to mark project as favorite");
-    //         console.error("Error marking project as favorite:", error);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
+        setIsLoading(true);
+        try {
+            await onMarkasFavorite(project.id);
+            toast.success("Project marked as favorite successfully");
+        } catch (error) {
+            toast.error("Failed to mark project as favorite");
+            console.error("Error marking project as favorite:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleDeleteProject = async () => {
         if (!selectedProject || !onDeleteProject) return;
@@ -244,7 +245,7 @@ export default function ProjectTable({
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
-                                                className="h-8 w-8"
+                                                className="h-8 w-8 hover:cursor-pointer"
                                             >
                                                 <MoreHorizontal className="h-4 w-4" />
                                                 <span className="sr-only">
@@ -257,18 +258,19 @@ export default function ProjectTable({
                                             className="w-48"
                                         >
                                             <DropdownMenuItem asChild>
-                                                {/* <MarkedToggleButton
+                                                <MarkedToggleButton
+                                                    className="hover:cursor-pointer"
                                                     markedForRevision={
                                                         project.Starmark[0]
                                                             ?.isMarked
                                                     }
                                                     id={project.id}
-                                                /> */}
+                                                />
                                             </DropdownMenuItem>
                                             <DropdownMenuItem asChild>
                                                 <Link
                                                     href={`/playground/${project.id}`}
-                                                    className="flex items-center"
+                                                    className="flex items-center hover:cursor-pointer"
                                                 >
                                                     <Eye className="h-4 w-4 mr-2" />
                                                     Open Project
@@ -278,7 +280,7 @@ export default function ProjectTable({
                                                 <Link
                                                     href={`/playground/${project.id}`}
                                                     target="_blank"
-                                                    className="flex items-center"
+                                                    className="flex items-center hover:cursor-pointer"
                                                 >
                                                     <ExternalLink className="h-4 w-4 mr-2" />
                                                     Open in New Tab
@@ -286,6 +288,7 @@ export default function ProjectTable({
                                             </DropdownMenuItem>
                                             <DropdownMenuSeparator />
                                             <DropdownMenuItem
+                                                className="hover:cursor-pointer"
                                                 onClick={() =>
                                                     handleEditClick(project)
                                                 }
@@ -294,6 +297,7 @@ export default function ProjectTable({
                                                 Edit Project
                                             </DropdownMenuItem>
                                             <DropdownMenuItem
+                                                className="hover:cursor-pointer"
                                                 onClick={() =>
                                                     handleDuplicateProject(
                                                         project,
@@ -304,6 +308,7 @@ export default function ProjectTable({
                                                 Duplicate
                                             </DropdownMenuItem>
                                             <DropdownMenuItem
+                                                className="hover:cursor-pointer"
                                                 onClick={() =>
                                                     copyProjectUrl(project.id)
                                                 }
@@ -316,7 +321,7 @@ export default function ProjectTable({
                                                 onClick={() =>
                                                     handleDeleteClick(project)
                                                 }
-                                                className="text-destructive focus:text-destructive"
+                                                className="text-destructive focus:text-destructive hover:cursor-pointer"
                                             >
                                                 <Trash2 className="h-4 w-4 mr-2" />
                                                 Delete Project
@@ -377,6 +382,7 @@ export default function ProjectTable({
                             variant="outline"
                             onClick={() => setEditDialogOpen(false)}
                             disabled={isLoading}
+                            className="hover:cursor-pointer"
                         >
                             Cancel
                         </Button>
@@ -384,6 +390,7 @@ export default function ProjectTable({
                             type="button"
                             onClick={handleUpdateProject}
                             disabled={isLoading || !editData.title.trim()}
+                            className="hover:cursor-pointer"
                         >
                             {isLoading ? "Saving..." : "Save Changes"}
                         </Button>
@@ -407,13 +414,16 @@ export default function ProjectTable({
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel disabled={isLoading}>
+                        <AlertDialogCancel
+                            disabled={isLoading}
+                            className="hover:cursor-pointer"
+                        >
                             Cancel
                         </AlertDialogCancel>
                         <AlertDialogAction
                             onClick={handleDeleteProject}
                             disabled={isLoading}
-                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:cursor-pointer"
                         >
                             {isLoading ? "Deleting..." : "Delete Project"}
                         </AlertDialogAction>
