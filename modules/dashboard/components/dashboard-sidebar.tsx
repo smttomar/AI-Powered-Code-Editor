@@ -118,7 +118,7 @@ export function DashboardSidebar({
                         Starred
                     </SidebarGroupLabel>
                     <SidebarGroupAction title="Add starred playground">
-                        <Plus className="h-4 w-4" />
+                        <Plus className="h-4 w-4 hover:cursor-pointer" />
                     </SidebarGroupAction>
                     <SidebarGroupContent>
                         <SidebarMenu>
@@ -166,7 +166,7 @@ export function DashboardSidebar({
                         Recent
                     </SidebarGroupLabel>
                     <SidebarGroupAction title="Create new playground">
-                        <FolderPlus className="h-4 w-4" />
+                        <FolderPlus className="h-4 w-4 hover:cursor-pointer" />
                     </SidebarGroupAction>
                     <SidebarGroupContent>
                         <SidebarMenu>
