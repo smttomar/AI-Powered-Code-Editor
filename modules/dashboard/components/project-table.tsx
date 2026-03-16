@@ -228,7 +228,10 @@ export default function ProjectTable({
                                                     project.user.image ||
                                                     "/placeholder.svg"
                                                 }
-                                                alt={project.user.name}
+                                                alt={
+                                                    project.user.name ||
+                                                    "User Avatar"
+                                                }
                                                 width={32}
                                                 height={32}
                                                 className="object-cover"
