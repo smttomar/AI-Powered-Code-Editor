@@ -5,7 +5,7 @@ import type { TemplateFolder } from "@/modules/playground/lib/path-to-json";
 import { transformToWebContainerFormat } from "../hooks/transformer";
 import { CheckCircle, Loader2, XCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-// import TerminalComponent from "./terminal";
+import TerminalComponent from "./terminal";
 import { WebContainer } from "@webcontainer/api";
 
 interface WebContainerPreviewProps {
@@ -42,7 +42,7 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
     const [isSetupInProgress, setIsSetupInProgress] = useState(false);
 
     // Ref to access terminal methods
-    // const terminalRef = useRef<any>(null);
+    const terminalRef = useRef<any>(null);
 
     // Reset setup state when forceResetup changes
     useEffect(() => {
@@ -74,22 +74,22 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                         "utf8",
                     );
                     if (packageJsonExists) {
-                        // if (terminalRef.current?.writeToTerminal) {
-                        //     terminalRef.current.writeToTerminal(
-                        //         "🔄 Reconnecting to existing WebContainer session...\r\n",
-                        //     );
-                        // }
+                        if (terminalRef.current?.writeToTerminal) {
+                            terminalRef.current.writeToTerminal(
+                                "🔄 Reconnecting to existing WebContainer session...\r\n",
+                            );
+                        }
                         instance.on(
                             "server-ready",
                             (port: number, url: string) => {
-                                // console.log(
-                                //     `Reconnected to server on port ${port} at ${url}`,
-                                // );
-                                // if (terminalRef.current?.writeToTerminal) {
-                                //     terminalRef.current.writeToTerminal(
-                                //         `🌐 Reconnected to server at ${url}\r\n`,
-                                //     );
-                                // }
+                                console.log(
+                                    `Reconnected to server on port ${port} at ${url}`,
+                                );
+                                if (terminalRef.current?.writeToTerminal) {
+                                    terminalRef.current.writeToTerminal(
+                                        `🌐 Reconnected to server at ${url}\r\n`,
+                                    );
+                                }
                                 setPreviewUrl(url);
                                 setLoadingState((prev) => ({
                                     ...prev,
@@ -116,11 +116,11 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                 setCurrentStep(1);
 
                 // Write to terminal
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         "🔄 Transforming template data...\r\n",
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        "🔄 Transforming template data...\r\n",
+                    );
+                }
 
                 // @ts-ignore
                 const files = transformToWebContainerFormat(templateData);
@@ -133,19 +133,19 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                 setCurrentStep(2);
 
                 // Step 2: Mount files
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         "📁 Mounting files to WebContainer...\r\n",
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        "📁 Mounting files to WebContainer...\r\n",
+                    );
+                }
 
                 await instance.mount(files);
 
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         "✅ Files mounted successfully\r\n",
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        "✅ Files mounted successfully\r\n",
+                    );
+                }
 
                 setLoadingState((prev) => ({
                     ...prev,
@@ -155,11 +155,11 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                 setCurrentStep(3);
 
                 // Step 3: Install dependencies
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         "📦 Installing dependencies...\r\n",
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        "📦 Installing dependencies...\r\n",
+                    );
+                }
 
                 const installProcess = await instance.spawn("npm", ["install"]);
 
@@ -168,9 +168,9 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                     new WritableStream({
                         write(data) {
                             // Write directly to terminal
-                            // if (terminalRef.current?.writeToTerminal) {
-                            //     terminalRef.current.writeToTerminal(data);
-                            // }
+                            if (terminalRef.current?.writeToTerminal) {
+                                terminalRef.current.writeToTerminal(data);
+                            }
                         },
                     }),
                 );
@@ -183,11 +183,11 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                     );
                 }
 
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         "✅ Dependencies installed successfully\r\n",
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        "✅ Dependencies installed successfully\r\n",
+                    );
+                }
 
                 setLoadingState((prev) => ({
                     ...prev,
@@ -197,11 +197,11 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                 setCurrentStep(4);
 
                 // Step 4: Start the server
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         "🚀 Starting development server...\r\n",
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        "🚀 Starting development server...\r\n",
+                    );
+                }
 
                 const startProcess = await instance.spawn("npm", [
                     "run",
@@ -210,12 +210,12 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
 
                 // Listen for server ready event
                 instance.on("server-ready", (port: number, url: string) => {
-                    // console.log(`Server ready on port ${port} at ${url}`);
-                    // if (terminalRef.current?.writeToTerminal) {
-                    //     terminalRef.current.writeToTerminal(
-                    //         `🌐 Server ready at ${url}\r\n`,
-                    //     );
-                    // }
+                    console.log(`Server ready on port ${port} at ${url}`);
+                    if (terminalRef.current?.writeToTerminal) {
+                        terminalRef.current.writeToTerminal(
+                            `🌐 Server ready at ${url}\r\n`,
+                        );
+                    }
                     setPreviewUrl(url);
                     setLoadingState((prev) => ({
                         ...prev,
@@ -230,9 +230,9 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                 startProcess.output.pipeTo(
                     new WritableStream({
                         write(data) {
-                            // if (terminalRef.current?.writeToTerminal) {
-                            //     terminalRef.current.writeToTerminal(data);
-                            // }
+                            if (terminalRef.current?.writeToTerminal) {
+                                terminalRef.current.writeToTerminal(data);
+                            }
                         },
                     }),
                 );
@@ -241,11 +241,11 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                 const errorMessage =
                     err instanceof Error ? err.message : String(err);
 
-                // if (terminalRef.current?.writeToTerminal) {
-                //     terminalRef.current.writeToTerminal(
-                //         `❌ Error: ${errorMessage}\r\n`,
-                //     );
-                // }
+                if (terminalRef.current?.writeToTerminal) {
+                    terminalRef.current.writeToTerminal(
+                        `❌ Error: ${errorMessage}\r\n`,
+                    );
+                }
 
                 setSetupError(errorMessage);
                 setIsSetupInProgress(false);
@@ -362,14 +362,14 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                     </div>
 
                     {/* Terminal */}
-                    {/* <div className="flex-1 p-4">
+                    <div className="flex-1 p-4">
                         <TerminalComponent
                             ref={terminalRef}
                             webContainerInstance={instance}
                             theme="dark"
                             className="h-full"
                         />
-                    </div> */}
+                    </div>
                 </div>
             ) : (
                 <div className="h-full flex flex-col">
@@ -383,14 +383,14 @@ const WebContainerPreview: React.FC<WebContainerPreviewProps> = ({
                     </div>
 
                     {/* Terminal at bottom when preview is ready */}
-                    {/* <div className="h-64 border-t">
+                    <div className="h-64 border-t">
                         <TerminalComponent
                             ref={terminalRef}
                             webContainerInstance={instance}
                             theme="dark"
                             className="h-full"
                         />
-                    </div> */}
+                    </div>
                 </div>
             )}
         </div>
