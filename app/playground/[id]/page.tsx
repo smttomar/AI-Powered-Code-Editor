@@ -8,11 +8,14 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { TemplateFileTree } from "@/modules/playground/components/playground-explorer";
 import { useFileExplorer } from "@/modules/playground/hooks/useFileExplorer";
-import { TemplateFile } from "@/modules/playground/lib/path-to-json";
+import {
+    TemplateFile,
+    TemplateFolder,
+} from "@/modules/playground/lib/path-to-json";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenuTrigger,
@@ -50,6 +53,12 @@ const MainPlaygroundPage = () => {
         setPlaygroundId,
         setOpenFiles,
         closeFile,
+        handleAddFile,
+        handleAddFolder,
+        handleDeleteFile,
+        handleDeleteFolder,
+        handleRenameFile,
+        handleRenameFolder,
     } = useFileExplorer();
 
     const {
@@ -71,6 +80,75 @@ const MainPlaygroundPage = () => {
         }
     }, [templateData, setTemplateData, openFiles.length]);
 
+    const wrappedHandleAddFile = useCallback(
+        (newFile: TemplateFile, parentPath: string) => {
+            return handleAddFile(
+                newFile,
+                parentPath,
+                writeFileSync!,
+                instance,
+                saveTemplateData,
+            );
+        },
+        [handleAddFile, writeFileSync, instance, saveTemplateData],
+    );
+
+    const wrappedHandleAddFolder = useCallback(
+        (newFolder: TemplateFolder, parentPath: string) => {
+            return handleAddFolder(
+                newFolder,
+                parentPath,
+                instance,
+                saveTemplateData,
+            );
+        },
+        [handleAddFolder, instance, saveTemplateData],
+    );
+
+    const wrappedHandleDeleteFile = useCallback(
+        (file: TemplateFile, parentPath: string) => {
+            return handleDeleteFile(file, parentPath, saveTemplateData);
+        },
+        [handleDeleteFile, saveTemplateData],
+    );
+
+    const wrappedHandleDeleteFolder = useCallback(
+        (folder: TemplateFolder, parentPath: string) => {
+            return handleDeleteFolder(folder, parentPath, saveTemplateData);
+        },
+        [handleDeleteFolder, saveTemplateData],
+    );
+
+    const wrappedHandleRenameFile = useCallback(
+        (
+            file: TemplateFile,
+            newFilename: string,
+            newExtension: string,
+            parentPath: string,
+        ) => {
+            return handleRenameFile(
+                file,
+                newFilename,
+                newExtension,
+                parentPath,
+                saveTemplateData,
+            );
+        },
+        [handleRenameFile, saveTemplateData],
+    );
+
+    const wrappedHandleRenameFolder = useCallback(
+        (folder: TemplateFolder, newFolderName: string, parentPath: string) => {
+            return handleRenameFolder(
+                folder,
+                newFolderName,
+                parentPath,
+                saveTemplateData,
+            );
+        },
+        [handleRenameFolder, saveTemplateData],
+    );
+
     const activeFile = openFiles.find((file) => file.id === activeFileId);
     const hasUnsavedChanges = openFiles.some((file) => file.hasUnsavedChanges);
 
@@ -86,12 +164,12 @@ const MainPlaygroundPage = () => {
                     onFileSelect={handleFileSelect}
                     selectedFile={activeFile}
                     title="File Explorer"
-                    onAddFile={() => {}}
-                    onAddFolder={() => {}}
-                    onDeleteFile={() => {}}
-                    onDeleteFolder={() => {}}
-                    onRenameFile={() => {}}
-                    onRenameFolder={() => {}}
+                    onAddFile={wrappedHandleAddFile}
+                    onAddFolder={wrappedHandleAddFolder}
+                    onDeleteFile={wrappedHandleDeleteFile}
+                    onDeleteFolder={wrappedHandleDeleteFolder}
+                    onRenameFile={wrappedHandleRenameFile}
+                    onRenameFolder={wrappedHandleRenameFolder}
                 />
                 <SidebarInset>
                     <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
