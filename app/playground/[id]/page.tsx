@@ -46,6 +46,7 @@ import WebContainerPreview from "@/modules/webcontainers/components/webcontainer
 import { LoadingStep } from "@/modules/playground/components/loader";
 import { toast } from "sonner";
 import { findFilePath } from "@/modules/playground/lib";
+import ToggleAI from "@/modules/playground/components/toggle-ai";
 const MainPlaygroundPage = () => {
     const { id } = useParams<{ id: string }>();
 
@@ -433,9 +434,11 @@ const MainPlaygroundPage = () => {
                                     </TooltipContent>
                                 </Tooltip>
 
-                                <Button variant={"default"} size={"icon"}>
-                                    <Bot className="size-4" />
-                                </Button>
+                                <ToggleAI
+                                    isEnabled={false}
+                                    onToggle={() => {}}
+                                    suggestionLoading={false}
+                                />
 
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
