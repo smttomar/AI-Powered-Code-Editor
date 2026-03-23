@@ -49,7 +49,7 @@ import { findFilePath } from "@/modules/playground/lib";
 const MainPlaygroundPage = () => {
     const { id } = useParams<{ id: string }>();
 
-    const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+    const [isPreviewVisible, setIsPreviewVisible] = useState(true);
 
     const { playgroundData, templateData, isLoading, error, saveTemplateData } =
         usePlayground(id);
