@@ -131,7 +131,6 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
     const [filterType, setFilterType] = useState<string>("all");
     const [autoSave, setAutoSave] = useState(true);
     const [streamResponse, setStreamResponse] = useState(true);
-    const [model, setModel] = useState<string>("gpt-6");
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -202,7 +201,6 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                     })),
                     stream: streamResponse,
                     mode: chatMode,
-                    model,
                 }),
             });
 
@@ -313,7 +311,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-semibold text-zinc-100">
-                                        Enhanced AI Assistant
+                                        AI Assistant
                                     </h2>
                                     <p className="text-sm text-zinc-400">
                                         {messages.length} messages
@@ -326,7 +324,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800"
+                                            className="text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 hover:cursor-pointer"
                                         >
                                             <Settings className="h-4 w-4" />
                                         </Button>
@@ -335,22 +333,28 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                         <DropdownMenuCheckboxItem
                                             checked={autoSave}
                                             onCheckedChange={setAutoSave}
+                                            className="hover:cursor-pointer"
                                         >
                                             Auto-save conversations
                                         </DropdownMenuCheckboxItem>
                                         <DropdownMenuCheckboxItem
                                             checked={streamResponse}
                                             onCheckedChange={setStreamResponse}
+                                            className="hover:cursor-pointer"
                                         >
                                             Stream responses
                                         </DropdownMenuCheckboxItem>
                                         <DropdownMenuSeparator />
-                                        <DropdownMenuItem onClick={exportChat}>
+                                        <DropdownMenuItem
+                                            onClick={exportChat}
+                                            className="hover:cursor-pointer"
+                                        >
                                             <Download className="h-4 w-4 mr-2" />
                                             Export Chat
                                         </DropdownMenuItem>
                                         <DropdownMenuItem
                                             onClick={() => setMessages([])}
+                                            className="hover:cursor-pointer"
                                         >
                                             Clear All Messages
                                         </DropdownMenuItem>
@@ -361,7 +365,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                     variant="ghost"
                                     size="sm"
                                     onClick={onClose}
-                                    className="h-8 w-8 p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800"
+                                    className="h-8 w-8 p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 hover:cursor-pointer"
                                 >
                                     <X className="h-4 w-4" />
                                 </Button>
@@ -378,28 +382,28 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                 <TabsList className="grid w-full grid-cols-4 max-w-md">
                                     <TabsTrigger
                                         value="chat"
-                                        className="flex items-center gap-1"
+                                        className="flex items-center gap-1 hover:cursor-pointer"
                                     >
                                         <MessageSquare className="h-3 w-3" />
                                         Chat
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="review"
-                                        className="flex items-center gap-1"
+                                        className="flex items-center gap-1 hover:cursor-pointer"
                                     >
                                         <Code className="h-3 w-3" />
                                         Review
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="fix"
-                                        className="flex items-center gap-1"
+                                        className="flex items-center gap-1 hover:cursor-pointer"
                                     >
                                         <RefreshCw className="h-3 w-3" />
                                         Fix
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="optimize"
-                                        className="flex items-center gap-1"
+                                        className="flex items-center gap-1 hover:cursor-pointer"
                                     >
                                         <Zap className="h-3 w-3" />
                                         Optimize
@@ -407,25 +411,10 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                 </TabsList>
 
                                 <div className="flex items-center gap-2">
-                                    <div className="hidden sm:flex items-center gap-2 text-xs text-zinc-400">
-                                        <span className="text-zinc-500">
-                                            Model:
+                                    <div className="hidden sm:flex items-center gap-2 text-xs">
+                                        <span className="text-zinc-400">
+                                            Model: llama-3.1-8b-instant
                                         </span>
-                                        <select
-                                            value={model}
-                                            onChange={(e) =>
-                                                setModel(e.target.value)
-                                            }
-                                            className="bg-zinc-900/60 border border-zinc-800 rounded px-2 py-1 text-zinc-200 focus:outline-none"
-                                        >
-                                            <option value="gpt-6">gpt-6</option>
-                                            <option value="codellama">
-                                                codellama
-                                            </option>
-                                            <option value="llama2">
-                                                llama2
-                                            </option>
-                                        </select>
                                     </div>
                                     <div className="relative">
                                         <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-zinc-500" />
@@ -444,7 +433,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                className="h-8 w-8 p-0"
+                                                className="h-8 w-8 p-0 hover:cursor-pointer"
                                             >
                                                 <Filter className="h-3 w-3" />
                                             </Button>
@@ -454,6 +443,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                 onClick={() =>
                                                     setFilterType("all")
                                                 }
+                                                className="hover:cursor-pointer"
                                             >
                                                 All Messages
                                             </DropdownMenuItem>
@@ -461,6 +451,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                 onClick={() =>
                                                     setFilterType("chat")
                                                 }
+                                                className="hover:cursor-pointer"
                                             >
                                                 Chat Only
                                             </DropdownMenuItem>
@@ -468,6 +459,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                 onClick={() =>
                                                     setFilterType("code_review")
                                                 }
+                                                className="hover:cursor-pointer"
                                             >
                                                 Code Reviews
                                             </DropdownMenuItem>
@@ -475,6 +467,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                 onClick={() =>
                                                     setFilterType("error_fix")
                                                 }
+                                                className="hover:cursor-pointer"
                                             >
                                                 Error Fixes
                                             </DropdownMenuItem>
@@ -484,6 +477,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                         "optimization",
                                                     )
                                                 }
+                                                className="hover:cursor-pointer"
                                             >
                                                 Optimizations
                                             </DropdownMenuItem>
@@ -503,7 +497,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                         <Brain className="h-8 w-8 text-zinc-400" />
                                     </div>
                                     <h3 className="text-xl font-semibold mb-3 text-zinc-300">
-                                        Enhanced AI Assistant
+                                        AI Assistant
                                     </h3>
                                     <p className="text-zinc-400 max-w-md mx-auto leading-relaxed mb-6">
                                         Advanced AI coding assistant with
@@ -523,7 +517,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                 onClick={() =>
                                                     setInput(suggestion)
                                                 }
-                                                className="px-3 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg text-sm text-zinc-300 transition-colors text-left"
+                                                className="px-3 py-2 hover:cursor-pointer bg-zinc-800 hover:bg-zinc-700 rounded-lg text-sm text-zinc-300 transition-colors text-left"
                                             >
                                                 {suggestion}
                                             </button>
@@ -577,6 +571,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                         code: ({
                                                             children,
                                                             className,
+                                                            // @ts-ignore
                                                             inline,
                                                         }) => {
                                                             if (inline) {
@@ -624,7 +619,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                                 msg.content,
                                                             )
                                                         }
-                                                        className="h-6 w-6 p-0 text-zinc-400 hover:text-zinc-200"
+                                                        className="h-6 w-6 p-0 text-zinc-400 hover:cursor-pointer hover:text-zinc-200"
                                                     >
                                                         <Copy className="h-3 w-3" />
                                                     </Button>
@@ -636,7 +631,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                                 msg.content,
                                                             )
                                                         }
-                                                        className="h-6 w-6 p-0 text-zinc-400 hover:text-zinc-200"
+                                                        className="h-6 w-6 p-0 text-zinc-400 hover:text-zinc-200 hover:cursor-pointer"
                                                     >
                                                         <RefreshCw className="h-3 w-3" />
                                                     </Button>
@@ -710,16 +705,11 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                     className="min-h-11 max-h-32 bg-zinc-800/50 border-zinc-700/50 text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:ring-blue-500/20 resize-none pr-20"
                                     rows={1}
                                 />
-                                <div className="absolute right-3 bottom-3 flex items-center gap-2">
-                                    <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-xs text-zinc-500 bg-zinc-800 border border-zinc-700 rounded">
-                                        ⌘↵
-                                    </kbd>
-                                </div>
                             </div>
                             <Button
                                 type="submit"
                                 disabled={isLoading || !input.trim()}
-                                className="h-11 px-4 bg-blue-600 hover:bg-blue-700 text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="h-11 px-4 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
                                 {isLoading ? (
                                     <Loader2 className="h-4 w-4 animate-spin" />
