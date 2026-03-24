@@ -131,15 +131,21 @@ export function TemplateFileTree({
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <SidebarGroupAction>
-                                <Plus className="h-4 w-4" />
+                                <Plus className="h-4 w-4 hover:cursor-pointer" />
                             </SidebarGroupAction>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={handleAddRootFile}>
+                            <DropdownMenuItem
+                                onClick={handleAddRootFile}
+                                className="hover:cursor-pointer"
+                            >
                                 <FilePlus className="h-4 w-4 mr-2" />
                                 New File
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={handleAddRootFolder}>
+                            <DropdownMenuItem
+                                onClick={handleAddRootFolder}
+                                className="hover:cursor-pointer"
+                            >
                                 <FolderPlus className="h-4 w-4 mr-2" />
                                 New Folder
                             </DropdownMenuItem>
@@ -285,7 +291,7 @@ function TemplateNode({
                     <SidebarMenuButton
                         isActive={isSelected}
                         onClick={() => onFileSelect?.(file)}
-                        className="flex-1"
+                        className="flex-1 hover:cursor-pointer"
                     >
                         <File className="h-4 w-4 mr-2 shrink-0" />
                         <span>{fileName}</span>
@@ -296,20 +302,23 @@ function TemplateNode({
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                                className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:cursor-pointer transition-opacity"
                             >
                                 <MoreHorizontal className="h-3 w-3" />
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={handleRename}>
+                            <DropdownMenuItem
+                                onClick={handleRename}
+                                className="hover:cursor-pointer"
+                            >
                                 <Edit3 className="h-4 w-4 mr-2" />
                                 Rename
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
                                 onClick={handleDelete}
-                                className="text-destructive"
+                                className="text-destructive hover:cursor-pointer"
                             >
                                 <Trash2 className="h-4 w-4 mr-2" />
                                 Delete
@@ -401,7 +410,7 @@ function TemplateNode({
                 >
                     <div className="flex items-center group">
                         <CollapsibleTrigger asChild>
-                            <SidebarMenuButton className="flex-1">
+                            <SidebarMenuButton className="flex-1 hover:cursor-pointer">
                                 <ChevronRight className="transition-transform" />
                                 <Folder className="h-4 w-4 mr-2 shrink-0" />
                                 <span>{folderName}</span>
@@ -413,29 +422,38 @@ function TemplateNode({
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:cursor-pointer transition-opacity"
                                 >
                                     <MoreHorizontal className="h-3 w-3" />
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={handleAddFile}>
+                                <DropdownMenuItem
+                                    onClick={handleAddFile}
+                                    className="hover:cursor-pointer"
+                                >
                                     <FilePlus className="h-4 w-4 mr-2" />
                                     New File
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={handleAddFolder}>
+                                <DropdownMenuItem
+                                    onClick={handleAddFolder}
+                                    className="hover:cursor-pointer"
+                                >
                                     <FolderPlus className="h-4 w-4 mr-2" />
                                     New Folder
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={handleRename}>
+                                <DropdownMenuItem
+                                    onClick={handleRename}
+                                    className="hover:cursor-pointer"
+                                >
                                     <Edit3 className="h-4 w-4 mr-2" />
                                     Rename
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     onClick={handleDelete}
-                                    className="text-destructive"
+                                    className="text-destructive hover:cursor-pointer"
                                 >
                                     <Trash2 className="h-4 w-4 mr-2" />
                                     Delete
