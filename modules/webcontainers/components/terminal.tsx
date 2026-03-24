@@ -485,11 +485,6 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between px-3 py-2 border-b bg-muted/50">
                     <div className="flex items-center gap-2">
-                        <div className="flex gap-1">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
                         <span className="text-sm font-medium">
                             WebContainer Terminal
                         </span>
