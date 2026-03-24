@@ -19,6 +19,7 @@ interface PlaygroundEditorProps {
     onAcceptSuggestion: (editor: any, monaco: any) => void;
     onRejectSuggestion: (editor: any) => void;
     onTriggerSuggestion: (type: string, editor: any) => void;
+    isAIEnabled: boolean;
 }
 
 export const PlaygroundEditor = ({
@@ -31,6 +32,7 @@ export const PlaygroundEditor = ({
     onAcceptSuggestion,
     onRejectSuggestion,
     onTriggerSuggestion,
+    isAIEnabled,
 }: PlaygroundEditorProps) => {
     const editorRef = useRef<any>(null);
     const monacoRef = useRef<Monaco | null>(null);
@@ -411,7 +413,9 @@ export const PlaygroundEditor = ({
         // Keyboard shortcuts
         editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Space, () => {
             console.log("Ctrl+Space pressed, triggering suggestion");
-            onTriggerSuggestion("completion", editor);
+            if (isAIEnabled) {
+                onTriggerSuggestion("completion", editor);
+            }
         });
 
         // CRITICAL: Override Tab key with high priority and prevent default Monaco behavior

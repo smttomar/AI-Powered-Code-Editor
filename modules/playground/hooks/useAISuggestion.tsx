@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 interface AISuggestionsState {
     suggestion: string | null;
@@ -17,6 +17,7 @@ interface UseAISuggestionsReturn extends AISuggestionsState {
 }
 
 export const useAISuggestions = (): UseAISuggestionsReturn => {
+    const isEnabledRef = useRef(true);
     const [state, setState] = useState<AISuggestionsState>({
         suggestion: null,
         isLoading: false,
@@ -24,14 +25,31 @@ export const useAISuggestions = (): UseAISuggestionsReturn => {
         decoration: [],
         isEnabled: true,
     });
+    useEffect(() => {
+        isEnabledRef.current = state.isEnabled;
+    }, [state.isEnabled]);
 
     const toggleEnabled = useCallback(() => {
-        setState((prev) => ({ ...prev, isEnabled: !prev.isEnabled }));
+        setState((prev) => {
+            const newState = { ...prev, isEnabled: !prev.isEnabled };
+
+            if (!newState.isEnabled) {
+                return {
+                    ...newState,
+                    suggestion: null,
+                    position: null,
+                    decoration: [],
+                    isLoading: false,
+                };
+            }
+
+            return newState;
+        });
     }, []);
 
     const fetchSuggestion = useCallback(
         async (type: string, editor: any) => {
-            if (!state.isEnabled || !editor) return;
+            if (!isEnabledRef.current || !editor) return;
 
             const model = editor.getModel();
             const cursorPosition = editor.getPosition();

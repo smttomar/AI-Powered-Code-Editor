@@ -547,6 +547,9 @@ const MainPlaygroundPage = () => {
                                                 content={
                                                     activeFile?.content || ""
                                                 }
+                                                isAIEnabled={
+                                                    aiSuggestions.isEnabled
+                                                }
                                                 onContentChange={(value) =>
                                                     activeFile &&
                                                     activeFileId &&
