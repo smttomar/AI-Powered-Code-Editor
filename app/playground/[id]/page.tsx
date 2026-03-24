@@ -42,7 +42,12 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useWebContainer } from "@/modules/webcontainers/hooks/useWebContainer";
-import WebContainerPreview from "@/modules/webcontainers/components/webcontainer-preview";
+import dynamic from "next/dynamic";
+
+const WebContainerPreview = dynamic(
+    () => import("@/modules/webcontainers/components/webcontainer-preview"),
+    { ssr: false },
+);
 import { LoadingStep } from "@/modules/playground/components/loader";
 import { toast } from "sonner";
 import { findFilePath } from "@/modules/playground/lib";

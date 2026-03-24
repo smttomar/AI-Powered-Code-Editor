@@ -156,35 +156,46 @@ Generate suggestion:`;
  */
 async function generateSuggestion(prompt: string): Promise<string> {
     try {
-        // Replace this with your actual AI service call
-        const response = await fetch("http://localhost:11434/api/generate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                model: "codellama:latest",
-                prompt,
-                stream: false,
-                options: {
+        const response = await fetch(
+            "https://api.groq.com/openai/v1/chat/completions",
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    model: "llama-3.1-8b-instant",
+
+                    messages: [
+                        {
+                            role: "user",
+                            content: prompt,
+                        },
+                    ],
+
                     temperature: 0.7,
                     max_tokens: 300,
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         if (!response.ok) {
-            throw new Error(`AI service error: ${response.statusText}`);
+            const errorText = await response.text();
+            console.error("Groq API Error:", errorText);
+            throw new Error(`AI service error: ${errorText}`);
         }
 
         const data = await response.json();
-        let suggestion = data.response;
 
-        // Clean up the suggestion
+        let suggestion = data.choices?.[0]?.message?.content || "";
+
+        // Clean code block
         if (suggestion.includes("```")) {
             const codeMatch = suggestion.match(/```[\w]*\n?([\s\S]*?)```/);
             suggestion = codeMatch ? codeMatch[1].trim() : suggestion;
         }
 
-        // Remove cursor markers if present
         suggestion = suggestion.replace(/\|CURSOR\|/g, "").trim();
 
         return suggestion;
