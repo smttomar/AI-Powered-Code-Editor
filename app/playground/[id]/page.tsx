@@ -390,7 +390,7 @@ const MainPlaygroundPage = () => {
                 />
                 <SidebarInset>
                     <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-                        <SidebarTrigger className="-ml-1" />
+                        <SidebarTrigger className="-ml-1 hover:cursor-pointer" />
                         <Separator
                             orientation="vertical"
                             className="mr-2 h-4"
@@ -413,6 +413,7 @@ const MainPlaygroundPage = () => {
                                             size="sm"
                                             variant="outline"
                                             onClick={() => handleSave()}
+                                            className="hover:cursor-pointer"
                                             disabled={
                                                 !activeFile ||
                                                 !activeFile.hasUnsavedChanges
@@ -432,6 +433,7 @@ const MainPlaygroundPage = () => {
                                             size="sm"
                                             variant="outline"
                                             onClick={() => handleSaveAll()}
+                                            className="hover:cursor-pointer"
                                             disabled={!hasUnsavedChanges}
                                         >
                                             <Save className="h-4 w-4" /> All
@@ -450,7 +452,11 @@ const MainPlaygroundPage = () => {
 
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
-                                        <Button size="sm" variant="outline">
+                                        <Button
+                                            size="sm"
+                                            variant="outline"
+                                            className="hover:cursor-pointer"
+                                        >
                                             <Settings className="h-4 w-4" />
                                         </Button>
                                     </DropdownMenuTrigger>
@@ -461,6 +467,7 @@ const MainPlaygroundPage = () => {
                                                     !isPreviewVisible,
                                                 )
                                             }
+                                            className="hover:cursor-pointer"
                                         >
                                             {isPreviewVisible ? "Hide" : "Show"}{" "}
                                             Preview
@@ -468,6 +475,7 @@ const MainPlaygroundPage = () => {
                                         <DropdownMenuSeparator />
                                         <DropdownMenuItem
                                             onClick={closeAllFiles}
+                                            className="hover:cursor-pointer"
                                         >
                                             Close All Files
                                         </DropdownMenuItem>
@@ -527,7 +535,7 @@ const MainPlaygroundPage = () => {
                                                     size="sm"
                                                     variant="ghost"
                                                     onClick={closeAllFiles}
-                                                    className="h-6 px-2 text-xs"
+                                                    className="h-6 px-2 text-xs hover:cursor-pointer"
                                                 >
                                                     Close All
                                                 </Button>
@@ -536,7 +544,7 @@ const MainPlaygroundPage = () => {
                                     </Tabs>
                                 </div>
                                 <div className="flex-1">
-                                    <ResizablePanelGroup className="h-full">
+                                    <ResizablePanelGroup>
                                         <ResizablePanel
                                             defaultSize={
                                                 isPreviewVisible ? 50 : 100
