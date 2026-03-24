@@ -41,7 +41,7 @@ export function Header() {
                                         />
 
                                         <span className="hidden sm:block font-extrabold text-lg">
-                                            VibeCode Editor
+                                            AI Powered Code Editor
                                         </span>
                                     </Link>
                                     <span className="text-zinc-300 dark:text-zinc-700">
@@ -60,7 +60,7 @@ export function Header() {
                                             className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
                                         >
                                             Pricing
-                                        </Link> */}
+                                        </Link>
                                         <Link
                                             href="https://codesnippetui.pro/templates?utm_source=codesnippetui.com&utm_medium=header"
                                             target="_blank"
@@ -70,7 +70,7 @@ export function Header() {
                                             <span className="text-green-500 dark:text-green-400 border border-green-500 dark:border-green-400 rounded-lg px-1 py-0.5 text-xs">
                                                 New
                                             </span>
-                                        </Link>
+                                        </Link> */}
                                     </div>
                                 </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-// import { createPlayground } from "@/features/playground/actions";
 import { Plus } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -27,11 +26,10 @@ const AddNewButton = () => {
         setSelectedTemplate(data);
         const res = await createPlayground(data);
         toast("Playground created successfully");
-        // Here you would typically handle the creation of a new playground
-        // with the selected template data
         console.log("Creating new playground:", data);
         setIsModalOpen(false);
-        router.push(`/playground/${res?.id}`);
+        // router.push(`/playground/${res?.id}`);
+        router.refresh();
     };
 
     return (

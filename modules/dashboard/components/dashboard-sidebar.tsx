@@ -117,9 +117,6 @@ export function DashboardSidebar({
                         <Star className="h-4 w-4 mr-2" />
                         Starred
                     </SidebarGroupLabel>
-                    <SidebarGroupAction title="Add starred playground">
-                        <Plus className="h-4 w-4 hover:cursor-pointer" />
-                    </SidebarGroupAction>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {starredPlaygrounds.length === 0 &&
@@ -165,9 +162,6 @@ export function DashboardSidebar({
                         <History className="h-4 w-4 mr-2" />
                         Recent
                     </SidebarGroupLabel>
-                    <SidebarGroupAction title="Create new playground">
-                        <FolderPlus className="h-4 w-4 hover:cursor-pointer" />
-                    </SidebarGroupAction>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {starredPlaygrounds.length === 0 &&
@@ -201,20 +195,11 @@ export function DashboardSidebar({
                                           </SidebarMenuItem>
                                       );
                                   })}
-                            <SidebarMenuItem>
-                                <SidebarMenuButton asChild tooltip="View all">
-                                    <Link href="/playgrounds">
-                                        <span className="text-sm text-muted-foreground">
-                                            View all playgrounds
-                                        </span>
-                                    </Link>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
+            {/* <SidebarFooter>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild tooltip="Settings">
@@ -225,7 +210,7 @@ export function DashboardSidebar({
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
-            </SidebarFooter>
+            </SidebarFooter> */}
             <SidebarRail />
         </Sidebar>
     );
