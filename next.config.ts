@@ -29,14 +29,6 @@ const nextConfig: NextConfig = {
             },
         ];
     },
-    reactStrictMode: false,
-    webpack: (config) => {
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            "@angular": false,
-        };
-        return config;
-    },
 };
 
 export default nextConfig;

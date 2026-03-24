@@ -42,4 +42,4 @@ next-env.d.ts
 
 /generated/prisma
 
-codefile-starters/angular
+/codefile-starters
