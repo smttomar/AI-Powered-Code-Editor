@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 AI Powered Code Editor
 
-## Getting Started
+A modern **AI-powered code editor** built with Next.js that allows users to write, run, and enhance code directly in the browser with real-time AI assistance.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🧠 **AI Code Assistance**
+    - Code completion
+    - Bug fixing suggestions
+    - Code explanations
+
+- 💻 **In-Browser Code Editor**
+    - Monaco Editor integration
+    - Multi-file support
+    - Syntax highlighting
+
+- ⚡ **Live Code Execution**
+    - Powered by WebContainers
+    - Real-time preview & terminal
+
+- 📁 **Template System**
+    - React, Next.js, Express, Vue, Angular, Hono
+    - Load starter projects instantly
+
+- 🔐 **Authentication**
+    - GitHub & Google login (NextAuth)
+
+- 🎨 **Modern UI**
+    - Dark/Light mode
+    - Responsive design
+    - Built with Tailwind CSS & shadcn/ui
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 16, React 19, Tailwind CSS
+- **Editor:** Monaco Editor
+- **AI Integration:** Groq / OpenAI APIs
+- **Backend:** Next.js API Routes
+- **Database:** Prisma + PostgreSQL
+- **Auth:** NextAuth
+- **Runtime:** WebContainer API
+- **State Management:** Zustand
+
+---
+
+## 📁 Project Structure
+
+```
+app/            → Routes & pages
+components/     → UI components
+hooks/          → Custom hooks
+lib/            → Utilities & configs
+modules/        → Core features (editor, AI, etc.)
+prisma/         → Database schema
+public/         → Static assets & templates
+```
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/ai-powered-code-editor.git
+cd ai-powered-code-editor
+```
+
+---
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Setup environment variables
+
+Create a `.env` file:
+
+```env
+DATABASE_URL=your_database_url
+NEXTAUTH_SECRET=your_secret
+NEXTAUTH_URL=http://localhost:3000
+
+GITHUB_ID=your_github_id
+GITHUB_SECRET=your_github_secret
+
+GOOGLE_CLIENT_ID=your_google_id
+GOOGLE_CLIENT_SECRET=your_google_secret
+```
+
+---
+
+### 4. Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Deployed on **Vercel**
 
-## Learn More
+> ⚠️ Templates are loaded dynamically to avoid build issues.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📚 Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/` → Landing Page
+- `/dashboard` → User dashboard
+- `/playground/[id]` → Code editor
+- `/docs` → Documentation
+- `/terms` → Terms of Service
+- `/privacy` → Privacy Policy
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧠 How It Works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. User selects a template
+2. Template is converted into JSON structure
+3. Loaded into WebContainer
+4. Monaco Editor displays files
+5. AI assists in real-time
+
+---
+
+## 🎯 Future Improvements
+
+- ⚡ Faster template loading (caching)
+- 🧠 Smarter AI context awareness
+- 💾 Project saving & sharing
+- 👥 Collaboration (real-time editing)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!
+Feel free to open issues for suggestions or bugs.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Chandra Pratap Singh**
+
+- GitHub: https://github.com/smttomar
+
+---
+
+⭐ If you like this project, give it a star!
