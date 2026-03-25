@@ -53,6 +53,7 @@ import { toast } from "sonner";
 import { findFilePath } from "@/modules/playground/lib";
 import ToggleAI from "@/modules/playground/components/toggle-ai";
 import { useAISuggestions } from "@/modules/playground/hooks/useAISuggestion";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 const MainPlaygroundPage = () => {
     const { id } = useParams<{ id: string }>();
 
@@ -443,7 +444,13 @@ const MainPlaygroundPage = () => {
                                         Save All (Ctrl+Shift+S)
                                     </TooltipContent>
                                 </Tooltip>
-
+                                <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="hover:cursor-pointer"
+                                >
+                                    <ThemeToggle />
+                                </Button>
                                 <ToggleAI
                                     isEnabled={aiSuggestions.isEnabled}
                                     onToggle={aiSuggestions.toggleEnabled}
