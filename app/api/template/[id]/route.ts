@@ -1,11 +1,7 @@
-import {
-    readTemplateStructureFromJson,
-    saveTemplateStructureToJson,
-} from "@/modules/playground/lib/path-to-json";
+import { saveTemplateStructureToJson } from "@/modules/playground/lib/path-to-json";
 import { db } from "@/lib/db";
 import { templatePaths } from "@/lib/template";
 import path from "path";
-import fs from "fs/promises";
 import { NextRequest } from "next/server";
 
 function validateJsonStructure(data: unknown): boolean {
@@ -49,31 +45,54 @@ export async function GET(
         return Response.json({ error: "Invalid template" }, { status: 404 });
     }
 
+    // try {
+    //     const inputPath = path.join(process.cwd(), templatePath);
+    //     const outputFile = path.join(
+    //         process.cwd(),
+    //         `output/${templateKey}.json`,
+    //     );
+
+    //     const data = await saveTemplateStructureToJson(inputPath);
+    //     const result = await readTemplateStructureFromJson(outputFile);
+
+    //     if (!validateJsonStructure(result.items)) {
+    //         return Response.json(
+    //             { error: "Invalid JSON structure" },
+    //             { status: 500 },
+    //         );
+    //     }
+
+    //     await fs.unlink(outputFile);
+    //     return Response.json(
+    //         { success: true, templateJson: result, files: data },
+    //         { status: 200 },
+    //     );
+    // } catch (error) {
+    //     console.error("Error generating template JSON:", error);
+    //     return Response.json(
+    //         { error: "Failed to generate template" },
+    //         { status: 500 },
+    //     );
+    // }
     try {
         const inputPath = path.join(process.cwd(), templatePath);
-        const outputFile = path.join(
-            process.cwd(),
-            `output/${templateKey}.json`,
-        );
 
-        //@ts-ignore
-        const data = await saveTemplateStructureToJson(path);
-        const result = await readTemplateStructureFromJson(outputFile);
+        const data = await saveTemplateStructureToJson(inputPath);
 
-        if (!validateJsonStructure(result.items)) {
+        if (!validateJsonStructure(data.items)) {
             return Response.json(
                 { error: "Invalid JSON structure" },
                 { status: 500 },
             );
         }
 
-        await fs.unlink(outputFile);
         return Response.json(
-            { success: true, templateJson: result, files: data },
+            { success: true, templateJson: data, files: data },
             { status: 200 },
         );
     } catch (error) {
         console.error("Error generating template JSON:", error);
+
         return Response.json(
             { error: "Failed to generate template" },
             { status: 500 },
