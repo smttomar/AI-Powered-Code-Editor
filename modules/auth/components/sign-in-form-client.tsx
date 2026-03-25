@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Chrome, Github } from "lucide-react";
 import { signIn } from "@/auth";
+import Link from "next/link";
 
 async function handleGoogleSignIn() {
     "use server";
@@ -59,13 +60,19 @@ const SignInFormClient = () => {
             <CardFooter>
                 <p className="text-sm text-center text-gray-500 dark:text-gray-400 w-full">
                     By signing in, you agree to our{" "}
-                    <a href="#" className="underline hover:text-primary">
+                    <Link
+                        href="/terms"
+                        className="underline hover:text-primary"
+                    >
                         Terms of Service
-                    </a>{" "}
+                    </Link>{" "}
                     and{" "}
-                    <a href="#" className="underline hover:text-primary">
+                    <Link
+                        href="/privacy"
+                        className="underline hover:text-primary"
+                    >
                         Privacy Policy
-                    </a>
+                    </Link>
                     .
                 </p>
             </CardFooter>
