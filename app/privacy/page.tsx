@@ -1,9 +1,7 @@
 export default function PrivacyPage() {
     return (
-        <div className="max-w-4xl mx-auto px-6 py-12 text-sm text-zinc-800">
-            <h1 className="text-3xl font-bold mb-6 text-white">
-                Privacy Policy
-            </h1>
+        <div className="max-w-4xl mx-auto px-6 py-12 text-sm text-zinc-800 dark:text-zinc-200">
+            <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
 
             <p className="mb-4">
                 Your privacy is important to us. This policy explains how we
