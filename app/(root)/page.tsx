@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import GetStartedButton from "@/modules/home/components/GetStartedButton";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,16 +28,7 @@ export default function Home() {
                 and optimize your code efficiently.
             </p>
             <div className="z-20">
-                <Link href={"/dashboard"}>
-                    <Button
-                        variant={"brand"}
-                        className="mb-4 hover:cursor-pointer"
-                        size={"lg"}
-                    >
-                        Get Started
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Button>
-                </Link>
+                <GetStartedButton />
             </div>
         </div>
     );
