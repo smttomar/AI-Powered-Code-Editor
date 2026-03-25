@@ -238,18 +238,7 @@ export const PlaygroundEditor = ({
             );
 
             // Use executeEdits to insert the text
-            const success = editor.executeEdits("ai-suggestion-accept", [
-                {
-                    range: range,
-                    text: cleanSuggestionText,
-                    forceMoveMarkers: true,
-                },
-            ]);
-
-            if (!success) {
-                console.error("Failed to execute edit");
-                return false;
-            }
+            editor.trigger("keyboard", "acceptInlineSuggestion", {});
 
             // Calculate new cursor position
             const lines = cleanSuggestionText.split("\n");
@@ -457,16 +446,8 @@ export const PlaygroundEditor = ({
                     hasActiveSuggestionAtPosition()
                 ) {
                     console.log("ATTEMPTING to accept suggestion with Tab");
-                    const accepted = acceptCurrentSuggestion();
-                    if (accepted) {
-                        console.log(
-                            "SUCCESS: Suggestion accepted via Tab, preventing default behavior",
-                        );
-                        return; // CRITICAL: Return here to prevent default tab behavior
-                    }
-                    console.log(
-                        "FAILED: Suggestion acceptance failed, falling through to default",
-                    );
+                    editor.trigger("keyboard", "acceptInlineSuggestion", {});
+                    return;
                 }
 
                 // Default tab behavior (indentation)
