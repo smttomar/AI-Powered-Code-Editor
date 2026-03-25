@@ -11,6 +11,7 @@ import {
 import { Chrome, Github } from "lucide-react";
 import { signIn } from "@/auth";
 import Link from "next/link";
+import { LoadingButton } from "./loading-button";
 
 async function handleGoogleSignIn() {
     "use server";
@@ -36,24 +37,16 @@ const SignInFormClient = () => {
 
             <CardContent className="grid gap-4">
                 <form action={handleGoogleSignIn}>
-                    <Button
-                        type="submit"
-                        variant={"outline"}
-                        className="w-full hover:cursor-pointer"
-                    >
+                    <LoadingButton>
                         <Chrome className="mr-2 h-4 w-4" />
                         <span>Sign in with google</span>
-                    </Button>
+                    </LoadingButton>
                 </form>
                 <form action={handleGithubSignIn}>
-                    <Button
-                        type="submit"
-                        variant={"outline"}
-                        className="w-full hover:cursor-pointer"
-                    >
+                    <LoadingButton>
                         <Github className="mr-2 h-4 w-4" />
                         <span>Sign in with github</span>
-                    </Button>
+                    </LoadingButton>
                 </form>
             </CardContent>
 

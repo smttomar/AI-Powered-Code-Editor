@@ -3,7 +3,16 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 export default function Home() {
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+    const handleRedirect = () => {
+        setLoading(true);
+        router.push("/dashboard");
+    };
     return (
         <div className="flex flex-col items-center justify-start min-h-screen py-2 mt-10 z-20">
             <div className="flex flex-col justify-center items-center my-5 z-20">
@@ -27,16 +36,25 @@ export default function Home() {
                 and optimize your code efficiently.
             </p>
             <div className="z-20">
-                <Link href={"/dashboard"}>
-                    <Button
-                        variant={"brand"}
-                        className="mb-4 hover:cursor-pointer"
-                        size={"lg"}
-                    >
-                        Get Started
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Button>
-                </Link>
+                <Button
+                    variant={"brand"}
+                    className="mb-4 hover:cursor-pointer"
+                    size={"lg"}
+                    onClick={handleRedirect}
+                    disabled={loading}
+                >
+                    {loading ? (
+                        <div className="flex items-center gap-2">
+                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                            <span>Loading...</span>
+                        </div>
+                    ) : (
+                        <>
+                            Get Started
+                            <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+                        </>
+                    )}
+                </Button>
             </div>
         </div>
     );
