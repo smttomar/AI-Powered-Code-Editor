@@ -244,16 +244,6 @@ export function DashboardSidebar({
                                         </Button>
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem className="py-2">
-                                        <div className="flex items-center justify-between w-full">
-                                            <div className="flex items-center gap-2">
-                                                <span>User</span>
-                                            </div>
-                                        </div>
-
-                                        <UserButton />
-                                    </DropdownMenuItem>
-                                    <DropdownMenuSeparator />
                                     <LogoutButton>
                                         <DropdownMenuItem className="hover:cursor-pointer">
                                             <LogOut className="h-4 w-4 mr-2 hover:cursor-pointer" />
