@@ -517,7 +517,7 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
                             variant="ghost"
                             size="sm"
                             onClick={() => setShowSearch(!showSearch)}
-                            className="h-6 w-6 p-0"
+                            className="h-6 w-6 p-0 hover:cursor-pointer"
                         >
                             <Search className="h-3 w-3" />
                         </Button>
@@ -526,7 +526,7 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
                             variant="ghost"
                             size="sm"
                             onClick={copyTerminalContent}
-                            className="h-6 w-6 p-0"
+                            className="h-6 w-6 p-0 hover:cursor-pointer"
                         >
                             <Copy className="h-3 w-3" />
                         </Button>
@@ -535,7 +535,7 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
                             variant="ghost"
                             size="sm"
                             onClick={downloadTerminalLog}
-                            className="h-6 w-6 p-0"
+                            className="h-6 w-6 p-0 hover:cursor-pointer"
                         >
                             <Download className="h-3 w-3" />
                         </Button>
@@ -544,7 +544,7 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
                             variant="ghost"
                             size="sm"
                             onClick={clearTerminal}
-                            className="h-6 w-6 p-0"
+                            className="h-6 w-6 p-0 hover:cursor-pointer"
                         >
                             <Trash2 className="h-3 w-3" />
                         </Button>
