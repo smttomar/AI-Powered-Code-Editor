@@ -254,30 +254,21 @@ async function processDirectory(
  */
 export async function saveTemplateStructureToJson(
     templatePath: string,
-    outputPath: string,
     options?: ScanOptions,
-): Promise<void> {
+): Promise<TemplateFolder> {
     try {
-        // Scan the template directory
         const templateStructure = await scanTemplateDirectory(
             templatePath,
             options,
         );
 
-        // Ensure the output directory exists
-        const outputDir = path.dirname(outputPath);
-        await fs.promises.mkdir(outputDir, { recursive: true });
+        // ✅ DO NOT SAVE FILE
+        // JUST RETURN DATA
 
-        // Write the JSON file
-        const data = await fs.promises.writeFile(
-            outputPath,
-            JSON.stringify(templateStructure, null, 2),
-            "utf8",
-        );
-        console.log(`Template structure saved to ${outputPath}`);
+        return templateStructure;
     } catch (error) {
         throw new Error(
-            `Error saving template structure: ${(error as Error).message}`,
+            `Error generating template structure: ${(error as Error).message}`,
         );
     }
 }

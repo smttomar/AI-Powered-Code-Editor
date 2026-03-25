@@ -56,7 +56,8 @@ export async function GET(
             `output/${templateKey}.json`,
         );
 
-        await saveTemplateStructureToJson(inputPath, outputFile);
+        //@ts-ignore
+        const data = await saveTemplateStructureToJson(path);
         const result = await readTemplateStructureFromJson(outputFile);
 
         if (!validateJsonStructure(result.items)) {
@@ -68,7 +69,7 @@ export async function GET(
 
         await fs.unlink(outputFile);
         return Response.json(
-            { success: true, templateJson: result },
+            { success: true, templateJson: result, files: data },
             { status: 200 },
         );
     } catch (error) {
