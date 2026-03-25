@@ -19,6 +19,7 @@ import {
     Zap,
     Database,
     FlameIcon,
+    LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -45,6 +46,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import UserButton from "@/modules/auth/components/user-button";
+import LogoutButton from "@/modules/auth/components/logout-button";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -251,6 +253,13 @@ export function DashboardSidebar({
 
                                         <UserButton />
                                     </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <LogoutButton>
+                                        <DropdownMenuItem className="hover:cursor-pointer">
+                                            <LogOut className="h-4 w-4 mr-2 hover:cursor-pointer" />
+                                            LogOut
+                                        </DropdownMenuItem>
+                                    </LogoutButton>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </SidebarMenuButton>
