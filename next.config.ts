@@ -29,6 +29,13 @@ const nextConfig: NextConfig = {
             },
         ];
     },
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /codefile-starters/,
+            use: "ignore-loader",
+        });
+        return config;
+    },
 };
 
 export default nextConfig;
