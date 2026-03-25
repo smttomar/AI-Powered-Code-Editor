@@ -37,6 +37,14 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import UserButton from "@/modules/auth/components/user-button";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -204,15 +212,47 @@ export function DashboardSidebar({
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild tooltip="Settings">
-                            <Button
-                                size="sm"
-                                variant="outline"
-                                className="hover:cursor-pointer"
-                            >
-                                {" "}
-                                Change Theme
-                                <ThemeToggle />
-                            </Button>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="hover:cursor-pointer"
+                                    >
+                                        <Settings className="h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent
+                                    align="end"
+                                    className="w-50 ml-4"
+                                >
+                                    <DropdownMenuItem className="py-2">
+                                        <div className="flex items-center justify-between w-full">
+                                            <div className="flex items-center gap-2">
+                                                <span>Change Theme</span>
+                                            </div>
+                                        </div>
+
+                                        <Button
+                                            size="sm"
+                                            variant="outline"
+                                            className="hover:cursor-pointer"
+                                        >
+                                            <ThemeToggle />
+                                        </Button>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem className="py-2">
+                                        <div className="flex items-center justify-between w-full">
+                                            <div className="flex items-center gap-2">
+                                                <span>User</span>
+                                            </div>
+                                        </div>
+
+                                        <UserButton />
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
