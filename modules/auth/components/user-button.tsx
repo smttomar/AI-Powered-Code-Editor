@@ -32,7 +32,7 @@ const UserButton = () => {
 
             <DropdownMenuContent className="mr-4">
                 <DropdownMenuItem>
-                    <span className=" hover:cursor-pointer">{user?.email}</span>
+                    <span>{user?.email}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <LogoutButton>
