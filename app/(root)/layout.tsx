@@ -35,13 +35,13 @@ export const metadata: Metadata = {
         description:
             "Write, debug, and run code faster using AI-powered suggestions and real-time execution.",
         url: "https://ai-powered-code-editor.vercel.app/", // change this
-        siteName: "AI Code Editor",
+        siteName: "AI Powered Code Editor",
         images: [
             {
                 url: "/og-image.png", // add your OG image in public folder
                 width: 1200,
                 height: 630,
-                alt: "AI Code Editor Preview",
+                alt: "AI Powered Code Editor Preview",
             },
         ],
         locale: "en_US",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
     twitter: {
         card: "summary_large_image",
-        title: "AI Code Powered Editor",
+        title: "AI Powered Code Editor",
         description:
             "An AI-powered coding environment with smart suggestions and live preview.",
         images: ["/og-image.png"],
