@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 
     title: {
         default: "AI Powered Code Editor - Build, Run & Debug Code with AI",
-        template: "%s | AI Code Editor",
+        template: "%s | AI Powered Code Editor",
     },
 
     description:
         "An AI-powered online code editor that helps developers write, debug, and run code faster with intelligent suggestions, real-time preview, and GitHub integration.",
 
     keywords: [
-        "AI Code Editor",
+        "AI Powered Code Editor",
         "Online IDE",
         "Code Playground",
         "AI Programming",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
     twitter: {
         card: "summary_large_image",
-        title: "AI Code Editor",
+        title: "AI Code Powered Editor",
         description:
             "An AI-powered coding environment with smart suggestions and live preview.",
         images: ["/og-image.png"],
