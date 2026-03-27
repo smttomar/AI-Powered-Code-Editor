@@ -172,7 +172,7 @@ const ToggleAI: React.FC<ToggleAIProps> = ({
                             <FileText className="h-4 w-4 text-muted-foreground" />
                             <div>
                                 <div className="text-sm font-medium">
-                                    Open Chat
+                                    ByteBuddy
                                 </div>
                                 <div className="text-xs text-muted-foreground">
                                     Chat with AI assistant

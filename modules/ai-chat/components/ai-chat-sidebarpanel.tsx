@@ -314,15 +314,15 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                             <div className="flex items-center gap-3">
                                 <div className="relative w-10 h-10 border rounded-full flex flex-col justify-center items-center">
                                     <Image
-                                        src={"/logo.svg"}
+                                        src={"/ByteBuddyLogo.png"}
                                         alt="Logo"
-                                        width={28}
-                                        height={28}
+                                        width={100}
+                                        height={100}
                                     />
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-semibold text-zinc-100">
-                                        AI Assistant
+                                        ByteBuddy
                                     </h2>
                                     <p className="text-sm text-zinc-400">
                                         {messages.length} messages
