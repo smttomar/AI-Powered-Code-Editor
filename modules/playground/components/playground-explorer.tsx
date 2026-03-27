@@ -141,7 +141,7 @@ export function TemplateFileTree({
                 size="sm"
                 variant="outline"
                 onClick={handleRedirect}
-                className="hover:cursor-pointer hover:text-[#E93F3F] mt-4 ml-2"
+                className="hover:cursor-pointer hover:text-[#E93F3F] mt-4 ml-2 mr-2"
             >
                 {loading ? (
                     <div className="flex items-center gap-2 text-[#E93F3F]">
