@@ -327,7 +327,7 @@ export const PlaygroundEditor = ({
 
                 suggestionTimeoutRef.current = setTimeout(() => {
                     onTriggerSuggestion("completion", editor);
-                }, 300);
+                }, 1000);
             }
         });
 
