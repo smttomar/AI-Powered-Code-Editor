@@ -135,6 +135,8 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -147,6 +149,12 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
         }, 100);
         return () => clearTimeout(timeoutId);
     }, [messages, isLoading]);
+
+    useEffect(() => {
+        if (!isLoading) {
+            textareaRef.current?.focus();
+        }
+    }, [isLoading]);
 
     const getChatModePrompt = (mode: string, content: string) => {
         switch (mode) {
@@ -689,6 +697,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                         <div className="flex items-end gap-3">
                             <div className="flex-1 relative">
                                 <Textarea
+                                    ref={textareaRef}
                                     placeholder={
                                         chatMode === "chat"
                                             ? "Ask about your code, request improvements, or paste code to analyze..."
