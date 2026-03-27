@@ -4,7 +4,7 @@ import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
     Loader2,
@@ -42,6 +42,7 @@ import {
 import "katex/dist/katex.min.css";
 import Image from "next/image";
 import Stream from "stream";
+import { useCurrentUser } from "@/modules/auth/hooks/use-current-user";
 
 interface ChatMessage {
     role: "user" | "assistant";
@@ -275,6 +276,8 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
             if (!searchTerm) return true;
             return msg.content.toLowerCase().includes(searchTerm.toLowerCase());
         });
+
+    const user = useCurrentUser();
 
     return (
         <TooltipProvider>
@@ -641,8 +644,12 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
 
                                         {msg.role === "user" && (
                                             <Avatar className="h-9 w-9 border border-zinc-700 bg-zinc-800 shrink-0">
+                                                <AvatarImage
+                                                    src={user?.image!}
+                                                    alt={user?.name!}
+                                                />
                                                 <AvatarFallback className="bg-zinc-700 text-zinc-300">
-                                                    <User className="h-5 w-5" />
+                                                    <User className="h-5 w-5"></User>
                                                 </AvatarFallback>
                                             </Avatar>
                                         )}
