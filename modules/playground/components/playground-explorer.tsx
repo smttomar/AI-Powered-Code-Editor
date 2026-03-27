@@ -11,6 +11,7 @@ import {
     MoreHorizontal,
     Trash2,
     Edit3,
+    Computer,
 } from "lucide-react";
 
 import {
@@ -51,6 +52,9 @@ import {
     TemplateFolder,
     TemplateItem,
 } from "../lib/path-to-json";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface TemplateFileTreeProps {
     data: TemplateItem;
@@ -123,8 +127,34 @@ export function TemplateFileTree({
         setIsNewFolderDialogOpen(false);
     };
 
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+    const handleRedirect = () => {
+        setLoading(true);
+        router.push("/dashboard");
+    };
+
     return (
         <Sidebar>
+            <Button
+                size="sm"
+                variant="outline"
+                onClick={handleRedirect}
+                className="hover:cursor-pointer hover:text-[#E93F3F] mt-4 ml-2"
+            >
+                {loading ? (
+                    <div className="flex items-center gap-2 text-[#E93F3F]">
+                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        <span>Loading...</span>
+                    </div>
+                ) : (
+                    <>
+                        Dashboard
+                        <Computer className="w-3.5 h-3.5" />
+                    </>
+                )}
+            </Button>
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>{title}</SidebarGroupLabel>
