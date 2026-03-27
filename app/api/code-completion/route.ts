@@ -125,30 +125,74 @@ function analyzeCodeContext(
 /**
  * Build AI prompt based on context
  */
+// function buildPrompt(context: CodeContext, suggestionType: string): string {
+//     return `You are an expert code completion assistant. Generate a ${suggestionType} suggestion.
+
+// Language: ${context.language}
+// Framework: ${context.framework}
+
+// Context:
+// ${context.beforeContext}
+// ${context.currentLine.substring(0, context.cursorPosition.column)}|CURSOR|${context.currentLine.substring(context.cursorPosition.column)}
+// ${context.afterContext}
+
+// Analysis:
+// - In Function: ${context.isInFunction}
+// - In Class: ${context.isInClass}
+// - After Comment: ${context.isAfterComment}
+// - Incomplete Patterns: ${context.incompletePatterns.join(", ") || "None"}
+
+// Instructions:
+// 1. Provide only the code that should be inserted at the cursor
+// 2. Maintain proper indentation and style
+// 3. Follow ${context.language} best practices
+// 4. Make the suggestion contextually appropriate
+
+// Generate suggestion:`;
+// }
+
 function buildPrompt(context: CodeContext, suggestionType: string): string {
-    return `You are an expert code completion assistant. Generate a ${suggestionType} suggestion.
+    return `
+You are CodePilot AI — an expert inline code completion engine.
+
+Task:
+Generate a ${suggestionType} code completion at the cursor position.
 
 Language: ${context.language}
 Framework: ${context.framework}
 
-Context:
+Full Context:
 ${context.beforeContext}
 ${context.currentLine.substring(0, context.cursorPosition.column)}|CURSOR|${context.currentLine.substring(context.cursorPosition.column)}
 ${context.afterContext}
 
-Analysis:
-- In Function: ${context.isInFunction}
-- In Class: ${context.isInClass}
+Code Analysis:
+- Inside Function: ${context.isInFunction}
+- Inside Class: ${context.isInClass}
 - After Comment: ${context.isAfterComment}
 - Incomplete Patterns: ${context.incompletePatterns.join(", ") || "None"}
 
-Instructions:
-1. Provide only the code that should be inserted at the cursor
-2. Maintain proper indentation and style
-3. Follow ${context.language} best practices
-4. Make the suggestion contextually appropriate
+Strict Rules (VERY IMPORTANT):
+1. Output ONLY the code to insert at |CURSOR|
+2. DO NOT include explanations, comments, or markdown
+3. DO NOT repeat existing code
+4. DO NOT include backticks or code fences
+5. Ensure syntax is valid and complete
+6. Keep suggestion minimal and precise
+7. Match existing code style and indentation exactly
+8. If inside a function/class → respect scope and variables
+9. If after a comment → generate relevant implementation
+10. If no useful suggestion → return an empty string
 
-Generate suggestion:`;
+Behavior Guidelines:
+- Prefer completing the current line before generating new lines
+- Respect naming conventions already used in the file
+- Use modern ${context.language} best practices
+- Avoid unnecessary imports or boilerplate unless required
+- Ensure the suggestion fits naturally at the cursor
+
+Output:
+`;
 }
 
 /**
