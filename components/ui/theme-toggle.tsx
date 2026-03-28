@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Moon, Sun, SunMoon } from "lucide-react";
+import { Button } from "./button";
 
 export function ThemeToggle() {
     const { setTheme, theme } = useTheme();
@@ -17,8 +18,10 @@ export function ThemeToggle() {
     }
 
     return (
-        <div
-            className="cursor-pointer"
+        <Button
+            variant="outline"
+            size="sm"
+            className="hover:cursor-pointer border-zinc-300 dark:border-zinc-700 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
             onClick={() => {
                 setTheme(theme === "light" ? "dark" : "light");
             }}
@@ -28,6 +31,6 @@ export function ThemeToggle() {
             ) : (
                 <Sun className="h-5 w-5 text-white" color="white" />
             )}
-        </div>
+        </Button>
     );
 }

@@ -257,14 +257,7 @@ export function DashboardSidebar({
                                                 <span>Change Theme</span>
                                             </div>
                                         </div>
-
-                                        <Button
-                                            size="sm"
-                                            variant="outline"
-                                            className="hover:cursor-pointer"
-                                        >
-                                            <ThemeToggle />
-                                        </Button>
+                                        <ThemeToggle />
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <LogoutButton>

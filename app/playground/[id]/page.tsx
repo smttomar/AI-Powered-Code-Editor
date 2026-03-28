@@ -444,13 +444,7 @@ const MainPlaygroundPage = () => {
                                         Save All (Ctrl+Shift+S)
                                     </TooltipContent>
                                 </Tooltip>
-                                <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="hover:cursor-pointer"
-                                >
-                                    <ThemeToggle />
-                                </Button>
+                                <ThemeToggle />
                                 <ToggleAI
                                     isEnabled={aiSuggestions.isEnabled}
                                     onToggle={aiSuggestions.toggleEnabled}
