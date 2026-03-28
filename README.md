@@ -132,6 +132,7 @@ Deployed on **Vercel**
 3. Loaded into WebContainer
 4. Monaco Editor displays files
 5. AI assists in real-time
+6. AI chat assistance by ByteBuddy
 
 ---
 
