@@ -47,6 +47,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import UserButton from "@/modules/auth/components/user-button";
 import LogoutButton from "@/modules/auth/components/logout-button";
+import { AIChatSidePanel } from "@/modules/ai-chat/components/ai-chat-sidebarpanel";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -80,6 +81,7 @@ export function DashboardSidebar({
     const [recentPlaygrounds, setRecentPlaygrounds] = useState(
         initialPlaygroundData,
     );
+    const [isChatOpen, setIsChatOpen] = useState(false);
 
     return (
         <Sidebar variant="inset" collapsible="icon" className="border border-r">
@@ -251,12 +253,26 @@ export function DashboardSidebar({
                                         </DropdownMenuItem>
                                     </LogoutButton>
                                 </DropdownMenuContent>
+
+                                <div className="hover:cursor-pointer w-10 h-10 border rounded-full mt-4">
+                                    <Image
+                                        onClick={() => setIsChatOpen(true)}
+                                        src={"/ByteBuddyLogo.png"}
+                                        alt="Logo"
+                                        width={100}
+                                        height={100}
+                                    />
+                                </div>
                             </DropdownMenu>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarFooter>
             <SidebarRail />
+            <AIChatSidePanel
+                isOpen={isChatOpen}
+                onClose={() => setIsChatOpen(false)}
+            />
         </Sidebar>
     );
 }
