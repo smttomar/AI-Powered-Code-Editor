@@ -505,7 +505,12 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                             {filteredMessages.length === 0 && !isLoading && (
                                 <div className="text-center text-zinc-500 py-16">
                                     <div className="relative w-16 h-16 border rounded-full flex flex-col justify-center items-center mx-auto mb-4">
-                                        <Brain className="h-8 w-8 text-zinc-400" />
+                                        <Image
+                                            src={"/ByteBuddyLogo.png"}
+                                            alt="Logo"
+                                            width={100}
+                                            height={100}
+                                        />
                                     </div>
                                     <h3 className="text-xl font-semibold mb-3 text-zinc-300">
                                         AI Assistant
@@ -549,7 +554,12 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                     >
                                         {msg.role === "assistant" && (
                                             <div className="relative w-10 h-10 border rounded-full flex flex-col justify-center items-center">
-                                                <Brain className="h-5 w-5 text-zinc-400" />
+                                                <Image
+                                                    src={"/ByteBuddyLogo.png"}
+                                                    alt="Logo"
+                                                    width={100}
+                                                    height={100}
+                                                />
                                             </div>
                                         )}
 
@@ -668,7 +678,12 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                             {isLoading && (
                                 <div className="flex items-start gap-4 justify-start">
                                     <div className="relative w-10 h-10 border rounded-full flex flex-col justify-center items-center">
-                                        <Brain className="h-5 w-5 text-zinc-400" />
+                                        <Image
+                                            src={"/ByteBuddyLogo.png"}
+                                            alt="Logo"
+                                            width={100}
+                                            height={100}
+                                        />
                                     </div>
                                     <div className="bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 p-5 rounded-xl rounded-bl-md flex items-center gap-3">
                                         <Loader2 className="h-4 w-4 animate-spin text-blue-400" />

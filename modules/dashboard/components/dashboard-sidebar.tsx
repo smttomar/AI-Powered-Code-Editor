@@ -48,6 +48,11 @@ import {
 import UserButton from "@/modules/auth/components/user-button";
 import LogoutButton from "@/modules/auth/components/logout-button";
 import { AIChatSidePanel } from "@/modules/ai-chat/components/ai-chat-sidebarpanel";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -217,6 +222,22 @@ export function DashboardSidebar({
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild tooltip="Settings">
                             <DropdownMenu>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <div className="hover:cursor-pointer w-10 h-10 border rounded-full mb-4 hover:opacity-75 transition">
+                                            <Image
+                                                onClick={() =>
+                                                    setIsChatOpen(true)
+                                                }
+                                                src={"/ByteBuddyLogo.png"}
+                                                alt="Logo"
+                                                width={100}
+                                                height={100}
+                                            />
+                                        </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent>ByteBuddy</TooltipContent>
+                                </Tooltip>
                                 <DropdownMenuTrigger asChild>
                                     <Button
                                         size="sm"
@@ -253,16 +274,6 @@ export function DashboardSidebar({
                                         </DropdownMenuItem>
                                     </LogoutButton>
                                 </DropdownMenuContent>
-
-                                <div className="hover:cursor-pointer w-10 h-10 border rounded-full mt-4">
-                                    <Image
-                                        onClick={() => setIsChatOpen(true)}
-                                        src={"/ByteBuddyLogo.png"}
-                                        alt="Logo"
-                                        width={100}
-                                        height={100}
-                                    />
-                                </div>
                             </DropdownMenu>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
