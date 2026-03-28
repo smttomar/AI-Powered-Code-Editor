@@ -141,6 +141,7 @@ export function TemplateFileTree({
                 size="sm"
                 variant="outline"
                 onClick={handleRedirect}
+                disabled={loading}
                 className="hover:cursor-pointer hover:text-[#E93F3F] mt-4 ml-2 mr-2"
             >
                 {loading ? (
