@@ -144,7 +144,7 @@ export function TemplateFileTree({
                 className="hover:cursor-pointer hover:text-[#E93F3F] mt-4 ml-2 mr-2"
             >
                 {loading ? (
-                    <div className="flex items-center gap-2 text-[#E93F3F]">
+                    <div className="flex items-center hover:cursor-not-allowed gap-2 text-[#E93F3F]">
                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                         <span>Loading...</span>
                     </div>
