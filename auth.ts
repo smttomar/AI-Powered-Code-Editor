@@ -85,6 +85,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             if (!token.sub) return token;
             const existingUser = await getUserById(token.sub);
 
+            if (account) {
+                token.accessToken = account.access_token;
+            }
+
             if (!existingUser) return token;
 
             const exisitingAccount = await getAccountByUserId(existingUser.id);
@@ -106,6 +110,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
                 session.user.role = token.role;
             }
 
+            session.accessToken = token.accessToken as string;
             return session;
         },
     },
