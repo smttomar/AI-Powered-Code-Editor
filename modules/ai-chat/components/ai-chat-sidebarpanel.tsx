@@ -513,7 +513,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                         />
                                     </div>
                                     <h3 className="text-xl font-semibold mb-3 text-zinc-300">
-                                        AI Assistant
+                                        ByteBuddy
                                     </h3>
                                     <p className="text-zinc-400 max-w-md mx-auto leading-relaxed mb-6">
                                         Advanced AI coding assistant with
