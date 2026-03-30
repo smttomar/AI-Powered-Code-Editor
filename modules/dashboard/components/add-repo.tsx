@@ -3,11 +3,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 const AddRepo = () => {
     const [openRepoModal, setOpenRepoModal] = useState(false);
     const [repos, setRepos] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
+    const { data: session } = useSession();
     const fetchRepos = async () => {
         try {
             setLoading(true);
@@ -33,6 +36,10 @@ const AddRepo = () => {
         <>
             <div
                 onClick={() => {
+                    if (!session?.accessToken) {
+                        toast.error("Login with GitHub to access repositories");
+                        return;
+                    }
                     setOpenRepoModal(true);
                     fetchRepos();
                 }}
