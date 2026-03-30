@@ -85,7 +85,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             if (!token.sub) return token;
             const existingUser = await getUserById(token.sub);
 
-            if (account) {
+            if (account?.provider === "github") {
                 token.accessToken = account.access_token;
             }
 

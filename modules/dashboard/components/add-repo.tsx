@@ -11,7 +11,7 @@ const AddRepo = () => {
     const [repos, setRepos] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const { data: session } = useSession();
-    const isGithubUser = !!session?.accessToken;
+    const isGithubUser = session?.user && (session as any)?.accessToken;
     const fetchRepos = async () => {
         try {
             setLoading(true);
