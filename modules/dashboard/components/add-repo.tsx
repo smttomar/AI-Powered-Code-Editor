@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { toast } from "sonner";
 
 const AddRepo = () => {
@@ -11,6 +11,7 @@ const AddRepo = () => {
     const [repos, setRepos] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const { data: session } = useSession();
+    const isGithubUser = !!session?.accessToken;
     const fetchRepos = async () => {
         try {
             setLoading(true);
@@ -36,8 +37,8 @@ const AddRepo = () => {
         <>
             <div
                 onClick={() => {
-                    if (!session?.accessToken) {
-                        toast.error("Login with GitHub to access repositories");
+                    if (!isGithubUser) {
+                        signIn("github"); // 🔥 redirect to GitHub login
                         return;
                     }
                     setOpenRepoModal(true);
@@ -62,10 +63,15 @@ const AddRepo = () => {
                     </Button>
                     <div className="flex flex-col">
                         <h1 className="text-xl font-bold text-[#e93f3f]">
-                            Open Github Repository
+                            {isGithubUser
+                                ? "Open GitHub Repository"
+                                : "Connect GitHub"}
                         </h1>
+
                         <p className="text-sm text-muted-foreground max-w-55">
-                            Work with your repositories in our editor
+                            {isGithubUser
+                                ? "Work with your repositories in our editor"
+                                : "Connect your GitHub account to access repositories"}
                         </p>
                     </div>
                 </div>
