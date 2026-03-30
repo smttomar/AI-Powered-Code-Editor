@@ -38,7 +38,8 @@ const AddRepo = () => {
             <div
                 onClick={() => {
                     if (!isGithubUser) {
-                        signIn("github"); // 🔥 redirect to GitHub login
+                        window.location.href =
+                            "/auth/error?error=GitHubNotConnected";
                         return;
                     }
                     setOpenRepoModal(true);
