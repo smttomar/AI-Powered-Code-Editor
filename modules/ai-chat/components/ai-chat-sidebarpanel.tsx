@@ -662,9 +662,17 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
 
                                         {msg.role === "user" && (
                                             <Avatar className="h-9 w-9 border border-zinc-700 bg-zinc-800 shrink-0">
-                                                <AvatarImage
-                                                    src={user?.image!}
-                                                    alt={user?.name!}
+                                                <Image
+                                                    src={
+                                                        user?.image ||
+                                                        "/placeholder.svg"
+                                                    }
+                                                    alt={
+                                                        user?.name ||
+                                                        "User Avatar"
+                                                    }
+                                                    width={100}
+                                                    height={100}
                                                 />
                                                 <AvatarFallback className="bg-zinc-700 text-zinc-300">
                                                     <User className="h-5 w-5"></User>

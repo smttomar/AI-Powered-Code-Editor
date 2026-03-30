@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -22,7 +23,14 @@ const UserButton = () => {
             <DropdownMenuTrigger>
                 <div className={cn("relative rounded-full")}>
                     <Avatar className="hover:cursor-pointer">
-                        <AvatarImage src={user?.image!} alt={user?.name!} />
+                        {/* <AvatarImage src={user?.image!} alt={user?.name!} /> */}
+                        <Image
+                            src={user?.image || "/placeholder.svg"}
+                            alt={user?.name || "User Avatar"}
+                            width={32}
+                            height={32}
+                            className="object-cover"
+                        />
                         <AvatarFallback className="bg-red-500">
                             <User className="text-white" />
                         </AvatarFallback>
