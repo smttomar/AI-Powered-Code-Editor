@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { toast } from "sonner";
+import { RepoModal } from "./repo-selecting-model";
 
 const AddRepo = () => {
     const [openRepoModal, setOpenRepoModal] = useState(false);
@@ -88,42 +89,13 @@ const AddRepo = () => {
                     />
                 </div>
             </div>
-            {openRepoModal && (
-                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-                    <div className="relative bg-white dark:bg-black w-150 max-h-125 rounded-lg p-6 overflow-y-auto">
-                        <button
-                            className="mt-4 text-2xl text-zinc-400 hover:text-zinc-200 transition hover:cursor-pointer absolute top-2 right-2"
-                            onClick={() => setOpenRepoModal(false)}
-                        >
-                            x
-                        </button>
-                        <h2 className="text-2xl font-semibold mb-4 text-[#e93f3f]">
-                            Select Repository
-                        </h2>
-
-                        {loading ? (
-                            <p className="text-zinc-400">Loading...</p>
-                        ) : (
-                            <div className="space-y-2">
-                                {repos.map((repo) => (
-                                    <div
-                                        key={repo.id}
-                                        className="p-3 rounded-md bg-zinc-800 hover:bg-zinc-700 cursor-pointer transition"
-                                        onClick={() => handleSelectRepo(repo)}
-                                    >
-                                        <p className="text-white font-medium">
-                                            {repo.name}
-                                        </p>
-                                        <p className="text-xs text-zinc-400">
-                                            {repo.full_name}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
+            <RepoModal
+                open={openRepoModal}
+                onOpenChange={setOpenRepoModal}
+                repos={repos}
+                loading={loading}
+                onSelect={handleSelectRepo}
+            />
         </>
     );
 };
