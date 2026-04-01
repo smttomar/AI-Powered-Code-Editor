@@ -24,6 +24,7 @@ const AddRepo = () => {
             console.error("Error fetching repos:", error);
         } finally {
             setLoading(false);
+            toast.success("Repositories fetched successfully");
         }
     };
     const handleSelectRepo = (repo: any) => {
@@ -89,14 +90,14 @@ const AddRepo = () => {
             </div>
             {openRepoModal && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-                    <div className="relative bg-zinc-900 w-150 max-h-125 rounded-lg p-6 overflow-y-auto">
+                    <div className="relative bg-white dark:bg-black w-150 max-h-125 rounded-lg p-6 overflow-y-auto">
                         <button
                             className="mt-4 text-2xl text-zinc-400 hover:text-zinc-200 transition hover:cursor-pointer absolute top-2 right-2"
                             onClick={() => setOpenRepoModal(false)}
                         >
                             x
                         </button>
-                        <h2 className="text-lg font-semibold mb-4 text-white">
+                        <h2 className="text-2xl font-semibold mb-4 text-[#e93f3f]">
                             Select Repository
                         </h2>
 
