@@ -17,7 +17,7 @@ export default function Home() {
                 />
 
                 <h1 className=" z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-rose-500 via-red-500 to-pink-500 dark:from-rose-400 dark:via-red-400 dark:to-pink-400 tracking-tight leading-[1.3] ">
-                    Coding With with Intelligence
+                    Coding with Intelligence
                 </h1>
             </div>
 
