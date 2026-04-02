@@ -43,7 +43,7 @@ export default function AuthErrorPage() {
                 >
                     {loading ? (
                         <div className="flex items-center hover:cursor-not-allowed gap-2 text-[#E93F3F]">
-                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                            <div className="h-4 w-4 animate-spin rounded-full border-2  border-[#E93F3F] border-t-transparent" />
                             <span>Loading...</span>
                         </div>
                     ) : (
@@ -66,7 +66,7 @@ export default function AuthErrorPage() {
                 >
                     {loading1 ? (
                         <div className="flex items-center hover:cursor-not-allowed gap-2 text-[#E93F3F]">
-                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#E93F3F] border-t-transparent" />
                             <span>Loading...</span>
                         </div>
                     ) : (
