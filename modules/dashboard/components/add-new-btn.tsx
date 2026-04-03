@@ -45,7 +45,7 @@ const AddNewButton = () => {
                 <div className="flex flex-row justify-center items-start gap-4">
                     <Button
                         variant={"outline"}
-                        className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] transition-colors duration-300"
+                        className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] hover:cursor-pointer transition-colors duration-300"
                         size={"icon"}
                     >
                         <Plus

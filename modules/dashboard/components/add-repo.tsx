@@ -118,7 +118,7 @@ const AddRepo = () => {
             <div className="flex flex-row justify-center items-start gap-4">
                 <Button
                     variant={"outline"}
-                    className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] transition-colors duration-300"
+                    className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] hover:cursor-pointer group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] transition-colors duration-300"
                     size={"icon"}
                 >
                     <ArrowDown
@@ -130,7 +130,7 @@ const AddRepo = () => {
                     <h1 className="text-xl font-bold text-[#e93f3f]">
                         Open Github Repository [Beta]
                     </h1>
-                    <p className="text-sm text-muted-foreground max-w-[220px]">
+                    <p className="text-sm text-muted-foreground max-w-55">
                         Work with your repositories in our editor
                     </p>
                 </div>
