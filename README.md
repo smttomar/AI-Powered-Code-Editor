@@ -66,7 +66,7 @@ public/         → Static assets & templates
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/ai-powered-code-editor.git
+git clone https://github.com/smttomar/ai-powered-code-editor.git
 cd ai-powered-code-editor
 ```
 
