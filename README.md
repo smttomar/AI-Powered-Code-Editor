@@ -38,7 +38,7 @@ A modern **AI-powered code editor** built with Next.js that allows users to writ
 
 - **Frontend:** Next.js 16, React 19, Tailwind CSS
 - **Editor:** Monaco Editor
-- **AI Integration:** Groq
+- **AI Integration:** Groq(api)
 - **Backend:** Next.js API Routes
 - **Database:** Prisma + Mongodb
 - **Auth:** NextAuth
