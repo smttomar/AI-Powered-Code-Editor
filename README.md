@@ -36,7 +36,7 @@ A modern **AI-powered code editor** built with Next.js that allows users to writ
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Next.js 16, React 19, Tailwind CSS
+- **Frontend:** Next.js 16, React 19, Tailwind CSS, shadcn/ui
 - **Editor:** Monaco Editor
 - **AI Integration:** Groq(api)
 - **Backend:** Next.js API Routes
