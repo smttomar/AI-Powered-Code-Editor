@@ -15,7 +15,7 @@ export function LoadingButton({ children }: { children: React.ReactNode }) {
         >
             {pending ? (
                 <div className="flex items-center hover:cursor-not-allowed gap-2">
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 dark:border-gray-400 border-gray-600 border-t-transparent" />
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
                     <span>Redirecting...</span>
                 </div>
             ) : (
