@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { LogOut, User } from "lucide-react";
 import LogoutButton from "./logout-button";
 import { useCurrentUser } from "@/modules/auth/hooks/use-current-user";
+import Reveal from "@/components/providers/reveal";
 
 const UserButton = () => {
     const user = useCurrentUser();
@@ -21,21 +22,23 @@ const UserButton = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <div className={cn("relative rounded-full")}>
-                    <Avatar className="hover:cursor-pointer">
-                        {/* <AvatarImage src={user?.image!} alt={user?.name!} /> */}
-                        <Image
-                            src={user?.image || "/placeholder.svg"}
-                            alt={user?.name || "User Avatar"}
-                            width={32}
-                            height={32}
-                            className="object-cover"
-                        />
-                        <AvatarFallback className="bg-red-500">
-                            <User className="text-white" />
-                        </AvatarFallback>
-                    </Avatar>
-                </div>
+                <Reveal>
+                    <div className={cn("relative rounded-full")}>
+                        <Avatar className="hover:cursor-pointer">
+                            {/* <AvatarImage src={user?.image!} alt={user?.name!} /> */}
+                            <Image
+                                src={user?.image || "/placeholder.svg"}
+                                alt={user?.name || "User Avatar"}
+                                width={32}
+                                height={32}
+                                className="object-cover"
+                            />
+                            <AvatarFallback className="bg-red-500">
+                                <User className="text-white" />
+                            </AvatarFallback>
+                        </Avatar>
+                    </div>
+                </Reveal>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="mr-4">
