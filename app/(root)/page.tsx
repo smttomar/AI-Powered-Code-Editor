@@ -24,14 +24,18 @@ export default function Home() {
                     </h1>
                 </Reveal>
             </div>
-            <Reveal>
-                <p className="mt-2 text-lg text-center text-gray-600 dark:text-gray-400 px-5 py-10 max-w-2xl z-20">
-                    AI Powered Code Editor is a powerful and intelligent code
-                    editor that enhances your coding experience with advanced
-                    features and seamless integration. It is designed to help
-                    you write, debug, and optimize your code efficiently.
-                </p>
-            </Reveal>
+            <div className="flex flex-col justify-center items-center z-20">
+                <Reveal>
+                    <p className="mt-2 text-lg text-center text-gray-600 dark:text-gray-400 px-5 py-10 max-w-2xl z-20">
+                        AI Powered Code Editor is a powerful and intelligent
+                        code editor that enhances your coding experience with
+                        advanced features and seamless integration. It is
+                        designed to help you write, debug, and optimize your
+                        code efficiently.
+                    </p>
+                </Reveal>
+            </div>
+
             <div className="z-20">
                 <Reveal>
                     <GetStartedButton />
