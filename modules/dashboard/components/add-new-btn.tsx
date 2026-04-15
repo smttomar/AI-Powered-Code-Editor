@@ -8,6 +8,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import TemplateSelectingModal from "./template-selecting-model";
 import { createPlayground } from "../actions";
+import Reveal from "@/components/providers/reveal";
 
 const AddNewButton = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,37 +43,41 @@ const AddNewButton = () => {
         shadow-[0_2px_10px_rgba(0,0,0,0.08)]
         hover:shadow-[0_10px_30px_rgba(233,63,63,0.15)]"
             >
-                <div className="flex flex-row justify-center items-start gap-4">
-                    <Button
-                        variant={"outline"}
-                        className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] hover:cursor-pointer transition-colors duration-300"
-                        size={"icon"}
-                    >
-                        <Plus
-                            size={30}
-                            className="transition-transform duration-300 group-hover:rotate-90"
-                        />
-                    </Button>
-                    <div className="flex flex-col">
-                        <h1 className="text-xl font-bold text-[#e93f3f]">
-                            Add New
-                        </h1>
-                        <p className="text-sm text-muted-foreground max-w-55">
-                            Create a new playground
-                        </p>
+                <Reveal>
+                    <div className="flex flex-row justify-center items-start gap-4">
+                        <Button
+                            variant={"outline"}
+                            className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] hover:cursor-pointer transition-colors duration-300"
+                            size={"icon"}
+                        >
+                            <Plus
+                                size={30}
+                                className="transition-transform duration-300 group-hover:rotate-90"
+                            />
+                        </Button>
+                        <div className="flex flex-col">
+                            <h1 className="text-xl font-bold text-[#e93f3f]">
+                                Add New
+                            </h1>
+                            <p className="text-sm text-muted-foreground max-w-55">
+                                Create a new playground
+                            </p>
+                        </div>
                     </div>
-                </div>
-
-                <div className="relative overflow-hidden">
-                    <Image
-                        src={"/add-new.svg"}
-                        alt="Create new playground"
-                        width={150}
-                        height={150}
-                        className="transition-transform duration-300 group-hover:scale-110"
-                    />
-                </div>
+                </Reveal>
+                <Reveal>
+                    <div className="relative overflow-hidden">
+                        <Image
+                            src={"/add-new.svg"}
+                            alt="Create new playground"
+                            width={150}
+                            height={150}
+                            className="transition-transform duration-300 group-hover:scale-110"
+                        />
+                    </div>
+                </Reveal>
             </div>
+
             <TemplateSelectingModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

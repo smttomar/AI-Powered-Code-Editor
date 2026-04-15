@@ -102,6 +102,7 @@
 
 // export default AddRepo;
 
+import Reveal from "@/components/providers/reveal";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
@@ -117,35 +118,39 @@ const AddRepo = () => {
       shadow-[0_2px_10px_rgba(0,0,0,0.08)]
       hover:shadow-[0_10px_30px_rgba(233,63,63,0.15)]"
             >
-                <div className="flex flex-row justify-center items-start gap-4">
-                    <Button
-                        variant={"outline"}
-                        className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] hover:cursor-pointer group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] transition-colors duration-300"
-                        size={"icon"}
-                    >
-                        <ArrowDown
-                            size={30}
-                            className="transition-transform duration-300 group-hover:translate-y-1"
-                        />
-                    </Button>
-                    <div className="flex flex-col">
-                        <h1 className="text-xl font-bold text-[#e93f3f]">
-                            Open Github Repository [Beta]
-                        </h1>
-                        <p className="text-sm text-muted-foreground max-w-55">
-                            Work with your repositories in our editor
-                        </p>
+                <Reveal>
+                    <div className="flex flex-row justify-center items-start gap-4">
+                        <Button
+                            variant={"outline"}
+                            className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] hover:cursor-pointer group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] transition-colors duration-300"
+                            size={"icon"}
+                        >
+                            <ArrowDown
+                                size={30}
+                                className="transition-transform duration-300 group-hover:translate-y-1"
+                            />
+                        </Button>
+                        <div className="flex flex-col">
+                            <h1 className="text-xl font-bold text-[#e93f3f]">
+                                Open Github Repository [Beta]
+                            </h1>
+                            <p className="text-sm text-muted-foreground max-w-55">
+                                Work with your repositories in our editor
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </Reveal>
 
                 <div className="relative overflow-hidden">
-                    <Image
-                        src={"/github.svg"}
-                        alt="Open GitHub repository"
-                        width={150}
-                        height={150}
-                        className="transition-transform duration-300 group-hover:scale-110"
-                    />
+                    <Reveal>
+                        <Image
+                            src={"/github.svg"}
+                            alt="Open GitHub repository"
+                            width={150}
+                            height={150}
+                            className="transition-transform duration-300 group-hover:scale-110"
+                        />
+                    </Reveal>
                 </div>
             </div>
         </Link>

@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import Reveal from "@/components/providers/reveal";
 
 // TemplateSelectionModal.tsx
 type TemplateSelectionModalProps = {
@@ -242,31 +243,48 @@ const TemplateSelectionModal = ({
                 {step === "select" ? (
                     <>
                         <DialogHeader>
-                            <DialogTitle className="text-2xl font-bold text-[#e93f3f] flex items-center gap-2">
-                                <Plus size={24} className="text-[#e93f3f]" />
-                                Select a Template
-                            </DialogTitle>
-                            <DialogDescription>
-                                Choose a template to create your new playground
-                            </DialogDescription>
+                            <Reveal>
+                                <DialogTitle className="text-2xl font-bold text-[#e93f3f] flex items-center gap-2">
+                                    <Plus
+                                        size={24}
+                                        className="text-[#e93f3f]"
+                                    />
+                                    Select a Template
+                                </DialogTitle>
+                            </Reveal>
+                            <Reveal>
+                                <DialogDescription>
+                                    Choose a template to create your new
+                                    playground
+                                </DialogDescription>
+                            </Reveal>
                         </DialogHeader>
 
                         <div className="flex flex-col gap-6 py-4">
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <div className="relative flex-1">
-                                    <Search
-                                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 outline-none"
-                                        size={18}
-                                    />
-                                    <Input
-                                        placeholder="Search templates..."
-                                        value={searchQuery}
-                                        onChange={(e) =>
-                                            setSearchQuery(e.target.value)
-                                        }
-                                        className="pl-10"
-                                    />
-                                </div>
+                                <Reveal>
+                                    <div className="relative flex-1">
+                                        <Search
+                                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 outline-none"
+                                            size={18}
+                                        />
+                                        <Input
+                                            placeholder="Search templates..."
+                                            value={searchQuery}
+                                            onChange={(e) =>
+                                                setSearchQuery(e.target.value)
+                                            }
+                                            className="pl-10"
+                                        />
+                                    </div>
+                                </Reveal>
+                                <Reveal>
+                                    <div className="flex items-center gap-2">
+                                        <Label className="whitespace-nowrap">
+                                            Filter by Category:
+                                        </Label>
+                                    </div>
+                                </Reveal>
 
                                 <Tabs
                                     defaultValue="all"
@@ -275,20 +293,22 @@ const TemplateSelectionModal = ({
                                         setCategory(value as any)
                                     }
                                 >
-                                    <TabsList className="grid grid-cols-4 w-full sm:w-100">
-                                        <TabsTrigger value="all">
-                                            All
-                                        </TabsTrigger>
-                                        <TabsTrigger value="frontend">
-                                            Frontend
-                                        </TabsTrigger>
-                                        <TabsTrigger value="backend">
-                                            Backend
-                                        </TabsTrigger>
-                                        <TabsTrigger value="fullstack">
-                                            Fullstack
-                                        </TabsTrigger>
-                                    </TabsList>
+                                    <Reveal>
+                                        <TabsList className="grid grid-cols-4 w-full sm:w-100">
+                                            <TabsTrigger value="all">
+                                                All
+                                            </TabsTrigger>
+                                            <TabsTrigger value="frontend">
+                                                Frontend
+                                            </TabsTrigger>
+                                            <TabsTrigger value="backend">
+                                                Backend
+                                            </TabsTrigger>
+                                            <TabsTrigger value="fullstack">
+                                                Fullstack
+                                            </TabsTrigger>
+                                        </TabsList>
+                                    </Reveal>
                                 </Tabs>
                             </div>
 
@@ -296,169 +316,185 @@ const TemplateSelectionModal = ({
                                 value={selectedTemplate || ""}
                                 onValueChange={handleSelectTemplate}
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {filteredTemplates.length > 0 ? (
-                                        filteredTemplates.map((template) => (
-                                            <div
-                                                key={template.id}
-                                                className={`relative flex p-6 border rounded-lg cursor-pointer
+                                <Reveal>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {filteredTemplates.length > 0 ? (
+                                            filteredTemplates.map(
+                                                (template) => (
+                                                    <div
+                                                        key={template.id}
+                                                        className={`relative flex p-6 border rounded-lg cursor-pointer
                           transition-all duration-300 hover:scale-[1.02]
                           ${
                               selectedTemplate === template.id
                                   ? "border-[#E93F3F]  shadow-[0_0_0_1px_#E93F3F,0_8px_20px_rgba(233,63,63,0.15)]"
                                   : "hover:border-[#E93F3F] shadow-[0_2px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]"
                           }`}
-                                                onClick={() =>
-                                                    handleSelectTemplate(
-                                                        template.id,
-                                                    )
-                                                }
-                                            >
-                                                <div className="absolute top-4 right-4 flex gap-1">
-                                                    {renderStars(
-                                                        template.popularity,
-                                                    )}
-                                                </div>
-
-                                                {selectedTemplate ===
-                                                    template.id && (
-                                                    <div className="absolute top-2 left-2 bg-[#E93F3F] text-white rounded-full p-1">
-                                                        <Check size={14} />
-                                                    </div>
-                                                )}
-
-                                                <div className="flex gap-4">
-                                                    <div
-                                                        className="relative w-16 h-16 shrink-0 flex items-center justify-center rounded-full"
-                                                        style={{
-                                                            backgroundColor: `${template.color}15`,
-                                                        }}
+                                                        onClick={() =>
+                                                            handleSelectTemplate(
+                                                                template.id,
+                                                            )
+                                                        }
                                                     >
-                                                        <Image
-                                                            src={
-                                                                template.icon ||
-                                                                "/placeholder.svg"
-                                                            }
-                                                            alt={`${template.name} icon`}
-                                                            width={40}
-                                                            height={40}
-                                                            className="object-contain"
-                                                        />
-                                                    </div>
+                                                        <div className="absolute top-4 right-4 flex gap-1">
+                                                            {renderStars(
+                                                                template.popularity,
+                                                            )}
+                                                        </div>
 
-                                                    <div className="flex flex-col">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <h3 className="text-lg font-semibold">
-                                                                {template.name}
-                                                            </h3>
-                                                            <div className="flex gap-1">
-                                                                {template.category ===
-                                                                    "frontend" && (
-                                                                    <Code
-                                                                        size={
-                                                                            14
+                                                        {selectedTemplate ===
+                                                            template.id && (
+                                                            <div className="absolute top-2 left-2 bg-[#E93F3F] text-white rounded-full p-1">
+                                                                <Check
+                                                                    size={14}
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                        <div className="flex gap-4">
+                                                            <div
+                                                                className="relative w-16 h-16 shrink-0 flex items-center justify-center rounded-full"
+                                                                style={{
+                                                                    backgroundColor: `${template.color}15`,
+                                                                }}
+                                                            >
+                                                                <Image
+                                                                    src={
+                                                                        template.icon ||
+                                                                        "/placeholder.svg"
+                                                                    }
+                                                                    alt={`${template.name} icon`}
+                                                                    width={40}
+                                                                    height={40}
+                                                                    className="object-contain"
+                                                                />
+                                                            </div>
+
+                                                            <div className="flex flex-col">
+                                                                <div className="flex items-center gap-2 mb-1">
+                                                                    <h3 className="text-lg font-semibold">
+                                                                        {
+                                                                            template.name
                                                                         }
-                                                                        className="text-blue-500"
-                                                                    />
-                                                                )}
-                                                                {template.category ===
-                                                                    "backend" && (
-                                                                    <Server
-                                                                        size={
-                                                                            14
-                                                                        }
-                                                                        className="text-green-500"
-                                                                    />
-                                                                )}
-                                                                {template.category ===
-                                                                    "fullstack" && (
-                                                                    <Globe
-                                                                        size={
-                                                                            14
-                                                                        }
-                                                                        className="text-purple-500"
-                                                                    />
-                                                                )}
+                                                                    </h3>
+                                                                    <div className="flex gap-1">
+                                                                        {template.category ===
+                                                                            "frontend" && (
+                                                                            <Code
+                                                                                size={
+                                                                                    14
+                                                                                }
+                                                                                className="text-blue-500"
+                                                                            />
+                                                                        )}
+                                                                        {template.category ===
+                                                                            "backend" && (
+                                                                            <Server
+                                                                                size={
+                                                                                    14
+                                                                                }
+                                                                                className="text-green-500"
+                                                                            />
+                                                                        )}
+                                                                        {template.category ===
+                                                                            "fullstack" && (
+                                                                            <Globe
+                                                                                size={
+                                                                                    14
+                                                                                }
+                                                                                className="text-purple-500"
+                                                                            />
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+
+                                                                <p className="text-sm text-muted-foreground mb-3">
+                                                                    {
+                                                                        template.description
+                                                                    }
+                                                                </p>
+
+                                                                <div className="flex flex-wrap gap-2 mt-auto">
+                                                                    {template.tags.map(
+                                                                        (
+                                                                            tag,
+                                                                        ) => (
+                                                                            <span
+                                                                                key={
+                                                                                    tag
+                                                                                }
+                                                                                className="text-xs px-2 py-1 border rounded-2xl"
+                                                                            >
+                                                                                {
+                                                                                    tag
+                                                                                }
+                                                                            </span>
+                                                                        ),
+                                                                    )}
+                                                                </div>
                                                             </div>
                                                         </div>
 
-                                                        <p className="text-sm text-muted-foreground mb-3">
-                                                            {
-                                                                template.description
-                                                            }
-                                                        </p>
-
-                                                        <div className="flex flex-wrap gap-2 mt-auto">
-                                                            {template.tags.map(
-                                                                (tag) => (
-                                                                    <span
-                                                                        key={
-                                                                            tag
-                                                                        }
-                                                                        className="text-xs px-2 py-1 border rounded-2xl"
-                                                                    >
-                                                                        {tag}
-                                                                    </span>
-                                                                ),
-                                                            )}
-                                                        </div>
+                                                        <RadioGroupItem
+                                                            value={template.id}
+                                                            id={template.id}
+                                                            className="sr-only"
+                                                        />
                                                     </div>
-                                                </div>
-
-                                                <RadioGroupItem
-                                                    value={template.id}
-                                                    id={template.id}
-                                                    className="sr-only"
+                                                ),
+                                            )
+                                        ) : (
+                                            <div className="col-span-2 flex flex-col items-center justify-center p-8 text-center">
+                                                <Search
+                                                    size={48}
+                                                    className="text-gray-300 mb-4"
                                                 />
+                                                <h3 className="text-lg font-medium">
+                                                    No templates found
+                                                </h3>
+                                                <p className="text-sm text-muted-foreground">
+                                                    Try adjusting your search or
+                                                    filters
+                                                </p>
                                             </div>
-                                        ))
-                                    ) : (
-                                        <div className="col-span-2 flex flex-col items-center justify-center p-8 text-center">
-                                            <Search
-                                                size={48}
-                                                className="text-gray-300 mb-4"
-                                            />
-                                            <h3 className="text-lg font-medium">
-                                                No templates found
-                                            </h3>
-                                            <p className="text-sm text-muted-foreground">
-                                                Try adjusting your search or
-                                                filters
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
+                                        )}
+                                    </div>
+                                </Reveal>
                             </RadioGroup>
                         </div>
-
-                        <div className="flex justify-between gap-3 mt-4 pt-4 border-t">
-                            <div className="flex items-center text-sm text-muted-foreground">
-                                <Clock size={14} className="mr-1" />
-                                <span>
-                                    Estimated setup time:{" "}
-                                    {selectedTemplate
-                                        ? "2-5 minutes"
-                                        : "Select a template"}
-                                </span>
+                        <Reveal>
+                            <div className="flex justify-between gap-3 mt-4 pt-4 border-t">
+                                <div className="flex items-center text-sm text-muted-foreground">
+                                    <Clock size={14} className="mr-1" />
+                                    <span>
+                                        Estimated setup time:{" "}
+                                        {selectedTemplate
+                                            ? "2-5 minutes"
+                                            : "Select a template"}
+                                    </span>
+                                </div>
+                                <div className="flex gap-3">
+                                    <Button
+                                        variant="outline"
+                                        onClick={onClose}
+                                        className="hover:cursor-pointer"
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        className="bg-[#E93F3F] hover:bg-[#d03636] hover:cursor-pointer text-white"
+                                        disabled={!selectedTemplate}
+                                        onClick={handleContinue}
+                                    >
+                                        Continue{" "}
+                                        <ChevronRight
+                                            size={16}
+                                            className="ml-1"
+                                        />
+                                    </Button>
+                                </div>
                             </div>
-                            <div className="flex gap-3">
-                                <Button
-                                    variant="outline"
-                                    onClick={onClose}
-                                    className="hover:cursor-pointer"
-                                >
-                                    Cancel
-                                </Button>
-                                <Button
-                                    className="bg-[#E93F3F] hover:bg-[#d03636] hover:cursor-pointer text-white"
-                                    disabled={!selectedTemplate}
-                                    onClick={handleContinue}
-                                >
-                                    Continue{" "}
-                                    <ChevronRight size={16} className="ml-1" />
-                                </Button>
-                            </div>
-                        </div>
+                        </Reveal>
                     </>
                 ) : (
                     <>
