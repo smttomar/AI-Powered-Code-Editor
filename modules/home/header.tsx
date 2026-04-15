@@ -107,7 +107,9 @@ export function Header() {
                                     >
                                         API
                                     </Link> */}
-                                        <ThemeToggle />
+                                        <Reveal>
+                                            <ThemeToggle />
+                                        </Reveal>
                                         <UserButton />
                                     </div>
                                 </div>

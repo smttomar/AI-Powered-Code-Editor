@@ -90,7 +90,11 @@ export function DashboardSidebar({
     const [isChatOpen, setIsChatOpen] = useState(false);
 
     return (
-        <Sidebar variant="inset" collapsible="icon" className="border border-r">
+        <Sidebar
+            variant="inset"
+            collapsible="icon"
+            className="h-full flex flex-col border border-r"
+        >
             <SidebarHeader>
                 <div className="flex items-center gap-2 px-4 py-3 justify-center">
                     <Reveal>
@@ -103,8 +107,8 @@ export function DashboardSidebar({
                     </Reveal>
                 </div>
             </SidebarHeader>
-            <Reveal>
-                <SidebarContent>
+            <SidebarContent className="flex-1 overflow-y-auto scroll-smooth scrollbar-hide">
+                <Reveal>
                     <SidebarGroup>
                         <SidebarMenu>
                             <SidebarMenuItem>
@@ -134,7 +138,8 @@ export function DashboardSidebar({
                             </SidebarMenuItem>
                         </SidebarMenu>
                     </SidebarGroup>
-
+                </Reveal>
+                <Reveal>
                     <SidebarGroup>
                         <SidebarGroupLabel>
                             <Star className="h-4 w-4 mr-2" />
@@ -182,7 +187,8 @@ export function DashboardSidebar({
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
-
+                </Reveal>
+                <Reveal>
                     <SidebarGroup>
                         <SidebarGroupLabel>
                             <History className="h-4 w-4 mr-2" />
@@ -226,8 +232,9 @@ export function DashboardSidebar({
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
-                </SidebarContent>
-            </Reveal>
+                </Reveal>
+            </SidebarContent>
+
             <Reveal>
                 <SidebarFooter>
                     <SidebarMenu>
