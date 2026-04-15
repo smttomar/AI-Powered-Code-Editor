@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Github } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function ComingSoonPage() {
     const router = useRouter();
@@ -12,15 +13,13 @@ export default function ComingSoonPage() {
 
     const handleRedirect = () => {
         setLoading(true);
-
-        // small delay for UX (optional)
         setTimeout(() => {
             router.replace("/dashboard");
         }, 800);
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-black via-zinc-900 to-black text-white px-4">
+        <div className="min-h-screen flex items-center justify-center bg-linear-to-br dark:bg-zinc-900 bg-zinc-100 text-[#e93f3f] px-4">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -29,15 +28,13 @@ export default function ComingSoonPage() {
             >
                 {/* Icon */}
                 <div className="flex justify-center">
-                    <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
-                        <Sparkles className="w-10 h-10 text-yellow-400" />
+                    <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border dark:border-white/20 border-black/20">
+                        <Github className="w-10 h-10 text-[#e93f3f]" />
                     </div>
                 </div>
 
                 {/* Title */}
-                <h1 className="text-4xl md:text-5xl font-bold">
-                    Feature Coming Soon 🚀
-                </h1>
+                <h1 className="text-4xl font-bold">Feature Coming Soon 🚀</h1>
 
                 {/* Subtitle */}
                 <p className="text-zinc-400 text-lg">
@@ -56,21 +53,22 @@ export default function ComingSoonPage() {
 
                 {/* Button */}
                 <div className="pt-4 flex justify-center">
-                    <button
+                    <Button
+                        variant="brand"
+                        size="lg"
                         onClick={handleRedirect}
                         disabled={loading}
-                        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-medium disabled:opacity-70 hover:cursor-pointer hover:bg-[#fff8f8] transition-colors duration-300"
+                        className="mb-4 hover:cursor-pointer"
                     >
                         {loading ? (
-                            <>
-                                {/* Spinner */}
-                                <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
-                                Redirecting...
-                            </>
+                            <div className="flex items-center hover:cursor-not-allowed gap-2">
+                                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                <span>Loading...</span>
+                            </div>
                         ) : (
-                            "Go Back"
+                            <>Home</>
                         )}
-                    </button>
+                    </Button>
                 </div>
             </motion.div>
         </div>
